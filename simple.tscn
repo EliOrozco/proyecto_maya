@@ -5,11 +5,6 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_qvr0x")
 
-[node name="Panel" type="Panel" parent="."]
-offset_top = 96.0
-offset_right = 864.0
-offset_bottom = 504.0
-
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_top = 616.0
 offset_right = 896.0
@@ -18,42 +13,75 @@ text = "Notificaciones"
 scroll_active = false
 shortcut_keys_enabled = false
 
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 912.0
+offset_top = 520.0
+offset_right = 1120.0
+offset_bottom = 616.0
+text = "Precio"
+scroll_active = false
+shortcut_keys_enabled = false
+
 [node name="Button" type="Button" parent="."]
-offset_left = 960.0
+offset_left = 896.0
 offset_top = 96.0
 offset_right = 1080.0
-offset_bottom = 127.0
+offset_bottom = 160.0
 focus_neighbor_top = NodePath("../LineEdit")
 focus_neighbor_bottom = NodePath("../Button2")
 text = "Añadir"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 960.0
-offset_top = 160.0
-offset_right = 1080.0
-offset_bottom = 191.0
+offset_left = 920.0
+offset_top = 208.0
+offset_right = 1072.0
+offset_bottom = 264.0
 focus_neighbor_top = NodePath("../Button")
 focus_neighbor_bottom = NodePath("../Button3")
 text = "Eliminar"
 
 [node name="Button3" type="Button" parent="."]
-offset_left = 960.0
-offset_top = 224.0
-offset_right = 1080.0
-offset_bottom = 255.0
+offset_left = 904.0
+offset_top = 272.0
+offset_right = 1072.0
+offset_bottom = 336.0
 focus_neighbor_top = NodePath("../Button2")
 text = "Modificar"
 
 [node name="ItemList" type="ItemList" parent="."]
+offset_left = 640.0
 offset_top = 96.0
 offset_right = 864.0
-offset_bottom = 504.0
+offset_bottom = 512.0
+mouse_filter = 1
 item_count = 1
 item_0/text = "bananas"
 
+[node name="ItemList2" type="ItemList" parent="."]
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 224.0
+offset_bottom = 512.0
+item_count = 3
+item_0/text = "sandiches"
+item_1/text = "bebidas"
+item_2/text = "tacosc"
+
+[node name="ItemList3" type="ItemList" parent="."]
+offset_left = 288.0
+offset_top = 96.0
+offset_right = 512.0
+offset_bottom = 512.0
+item_count = 3
+item_0/text = "mod1"
+item_1/text = "mod2"
+item_2/text = "mod3"
+
 [node name="LineEdit" type="LineEdit" parent="."]
-offset_right = 896.0
-offset_bottom = 40.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 912.0
+offset_bottom = 56.0
 focus_neighbor_right = NodePath("../Button")
 focus_neighbor_bottom = NodePath("../ItemList")
 placeholder_text = "Buscar"
