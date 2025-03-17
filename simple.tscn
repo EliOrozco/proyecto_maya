@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5o5jnl1b5mp7"]
 
-[ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://basic.gd" id="1_qvr0x"]
+[ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://interfaceManager.gd" id="1_qvr0x"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_qvr0x")
@@ -120,8 +120,7 @@ offset_right = 606.0
 offset_bottom = 95.0
 text = "Ticket"
 
-[connection signal="pressed" from="anadir" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="eliminar" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="modificar" to="." method="_on_button_3_pressed"]
-[connection signal="item_activated" from="listaTicket" to="." method="_on_item_list_item_activated"]
-[connection signal="item_selected" from="listaTicket" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="anadir" to="." method="_on_anadir_pressed"]
+[connection signal="pressed" from="eliminar" to="." method="_on_eliminar_pressed"]
+[connection signal="pressed" from="modificar" to="." method="_on_modificar_pressed"]
+[connection signal="item_selected" from="listaTicket" to="." method="_on_lista_ticket_selected"]
