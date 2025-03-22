@@ -17,13 +17,14 @@ var dbm = DbManager #connector a la base de datos
 @onready var lista_ticket: ItemList = $listaTicket
 @onready var lista_producto: ItemList = $listaProducto
 @onready var lista_mod: ItemList = $listaMod
-@onready var buscador: LineEdit = $buscador
+@onready var buscador: LineEdit = $contenedorTabs/ventas/buscador
 
 # Se ejecuta una sóla vez
 func _ready() -> void:
-	buscador.grab_focus() #el buscador es auto seleccionado al abrir
+	#buscador.grab_focus() #el buscador es auto seleccionado al abrir
 	#PENDIENTE añadir soporte para usar flechas del teclado para navegación
 	#REQUERIMIENTO NO FUNCIONAL
+	pass
 
 # Se ejecuta cada frame, reducir funciones que van aquí
 func _process(_delta: float) -> void:

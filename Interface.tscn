@@ -1,0 +1,171 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5o5jnl1b5mp7"]
+
+[ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://interfaceManager.gd" id="1_qvr0x"]
+[ext_resource type="PackedScene" uid="uid://bmvs7vspfibd6" path="res://item_button.tscn" id="2_6lq5x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lq5x"]
+bg_color = Color(0.2, 0.458824, 0.596078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q64hd"]
+bg_color = Color(0.952625, 0.406992, 0.235672, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhkvj"]
+bg_color = Color(0.839216, 0.847059, 0.156863, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_limw0"]
+bg_color = Color(0.964706, 0.921569, 0.905882, 1)
+
+[node name="Interfaz" type="Node2D"]
+script = ExtResource("1_qvr0x")
+
+[node name="controladorDeInterfaz" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Divisor" type="HBoxContainer" parent="controladorDeInterfaz"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ColorDeFondoTicket" type="PanelContainer" parent="controladorDeInterfaz/Divisor"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6lq5x")
+
+[node name="ContenedorTicket" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket"]
+layout_mode = 2
+
+[node name="NombreApp" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+layout_mode = 2
+bbcode_enabled = true
+text = "SIKIL"
+fit_content = true
+
+[node name="NuevoTicketButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Nuevo Ticket"
+
+[node name="ListaItems" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+layout_mode = 2
+size_flags_vertical = 2
+auto_width = true
+auto_height = true
+item_count = 3
+item_0/text = "1"
+item_1/text = "2"
+item_2/text = "3"
+
+[node name="DivisorTotalCobrar" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+layout_mode = 2
+
+[node name="TotalTicketText" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorTotalCobrar"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[b]Total:[/b]"
+fit_content = true
+scroll_active = false
+
+[node name="CobroTicketText" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorTotalCobrar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+fit_content = true
+scroll_active = false
+
+[node name="DivisorBotones" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CancelarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorBotones"]
+layout_mode = 2
+text = "Cancelar"
+
+[node name="CobrarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorBotones"]
+layout_mode = 2
+text = "Cobrar"
+
+[node name="ColorDeFondoProductos" type="PanelContainer" parent="controladorDeInterfaz/Divisor"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q64hd")
+
+[node name="ContenedorTabs" type="TabContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos"]
+custom_minimum_size = Vector2(800, 648)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/tab_focus = SubResource("StyleBoxFlat_dhkvj")
+theme_override_styles/tab_disabled = SubResource("StyleBoxFlat_dhkvj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_limw0")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_dhkvj")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_dhkvj")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_dhkvj")
+current_tab = 0
+
+[node name="Ventas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+clip_contents = true
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Buscador" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.629675, 0.629675, 0.629675, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+placeholder_text = "Ingrese el nombre o código del producto"
+max_length = 50
+clear_button_enabled = true
+flat = true
+draw_control_chars = true
+select_all_on_focus = true
+
+[node name="Scroller" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Grid" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 265
+theme_override_constants/v_separation = 300
+columns = 3
+
+[node name="ItemButton" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton2" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton3" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton4" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton5" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton6" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton7" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="Consultas" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Tablero" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

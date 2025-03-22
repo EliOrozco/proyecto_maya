@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="maqueta_maya"
-run/main_scene="res://simple.tscn"
+run/main_scene="res://Interface.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmvs7vspfibd6"]
+
+[ext_resource type="Texture2D" uid="uid://bagl3dvurqya0" path="res://texture/button_item_normal.png" id="1_fwu4t"]
+[ext_resource type="Texture2D" uid="uid://dgv2tb3a4ef5f" path="res://icon.svg" id="2_d0lj2"]
+
+[node name="ItemButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -912.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 50.0
+texture_normal = ExtResource("1_fwu4t")
+stretch_mode = 0
+
+[node name="ProductImage" type="Sprite2D" parent="."]
+position = Vector2(136, 128)
+scale = Vector2(1.875, 1.875)
+texture = ExtResource("2_d0lj2")
+
+[node name="ProductName" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 248.0
+offset_right = 160.0
+offset_bottom = 272.0
+bbcode_enabled = true
+text = "[color=black][b]ProductName[/b]
+[/color]"
+fit_content = true
+scroll_active = false
+
+[node name="ProductMods" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 272.0
+offset_right = 240.0
+offset_bottom = 295.0
+bbcode_enabled = true
+text = "[color=black]Example 1, Example 2, Example 3[/color]"
+scroll_active = false
