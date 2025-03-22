@@ -147,7 +147,7 @@ clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 265
+theme_override_constants/h_separation = 260
 theme_override_constants/v_separation = 300
 columns = 3
 
@@ -170,6 +170,30 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ItemButton7" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton8" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton9" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton10" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton11" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton12" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton13" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton14" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
+layout_mode = 2
+
+[node name="ItemButton15" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
 layout_mode = 2
 
 [node name="Consultas" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]

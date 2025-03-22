@@ -18,6 +18,7 @@ var dbm = DbManager #connector a la base de datos
 @onready var lista_producto: ItemList = $listaProducto
 @onready var lista_mod: ItemList = $listaMod
 @onready var buscador: LineEdit = $contenedorTabs/ventas/buscador
+@onready var chucho = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid/ItemButton
 
 # Se ejecuta una sóla vez
 func _ready() -> void:
