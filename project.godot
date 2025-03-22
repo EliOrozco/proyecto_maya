@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 DbManager="*res://dbManager.gd"
 
-[display]
-
-window/size/resizable=false
-
 [input]
 
 click={

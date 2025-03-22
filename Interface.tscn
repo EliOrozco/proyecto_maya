@@ -38,57 +38,69 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_6lq5x")
 
-[node name="ContenedorTicket" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket"]
+[node name="DivisorTitulo" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket"]
 layout_mode = 2
 
-[node name="NombreApp" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+[node name="NombreApp" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
 layout_mode = 2
+size_flags_vertical = 0
 bbcode_enabled = true
 text = "SIKIL"
 fit_content = true
 
-[node name="NuevoTicketButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+[node name="ContenedorTicket" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 2
+alignment = 1
+
+[node name="NuevoTicketButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 text = "Nuevo Ticket"
 
-[node name="ListaItems" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+[node name="ListaItems" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
 layout_mode = 2
 size_flags_vertical = 2
 auto_width = true
 auto_height = true
-item_count = 3
+item_count = 5
 item_0/text = "1"
 item_1/text = "2"
 item_2/text = "3"
+item_3/text = "4"
+item_4/text = "5"
 
-[node name="DivisorTotalCobrar" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+[node name="DivisorTotalCobrar" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
 layout_mode = 2
+size_flags_vertical = 8
 
-[node name="TotalTicketText" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorTotalCobrar"]
+[node name="TotalTicketText" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorTotalCobrar"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 bbcode_enabled = true
 text = "[b]Total:[/b]"
 fit_content = true
 scroll_active = false
 
-[node name="CobroTicketText" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorTotalCobrar"]
+[node name="CobroTicketText" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorTotalCobrar"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
 fit_content = true
 scroll_active = false
 
-[node name="DivisorBotones" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket"]
+[node name="DivisorBotones" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
 
-[node name="CancelarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorBotones"]
+[node name="CancelarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
 layout_mode = 2
 text = "Cancelar"
 
-[node name="CobrarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/ContenedorTicket/DivisorBotones"]
+[node name="CobrarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
 layout_mode = 2
 text = "Cobrar"
 
