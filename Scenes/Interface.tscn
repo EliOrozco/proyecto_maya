@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=7 format=3 uid="uid://c5o5jnl1b5mp7"]
 
-[ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://interfaceManager.gd" id="1_qvr0x"]
-[ext_resource type="PackedScene" uid="uid://bmvs7vspfibd6" path="res://item_button.tscn" id="2_6lq5x"]
+[ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
+[ext_resource type="PackedScene" uid="uid://bmvs7vspfibd6" path="res://Scenes/ItemButton.tscn" id="2_6lq5x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
+[ext_resource type="Texture2D" uid="uid://b41cmbb21wyep" path="res://texture/logos/Logo Files/Full Lockup/Lockup_Color.png" id="3_wi8ec"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lq5x"]
 bg_color = Color(0.2, 0.458824, 0.596078, 1)
@@ -37,12 +38,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6lq5x")
 [node name="DivisorTitulo" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket"]
 layout_mode = 2
 
-[node name="NombreApp" type="RichTextLabel" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
+[node name="ContenedorLogo" type="CenterContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-size_flags_vertical = 0
-bbcode_enabled = true
-text = "SIKIL"
-fit_content = true
+size_flags_vertical = 8
+
+[node name="Logo" type="Sprite2D" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorLogo"]
+texture = ExtResource("3_wi8ec")
+centered = false
 
 [node name="ContenedorTicket" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
 layout_mode = 2
@@ -55,17 +58,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Nuevo Ticket"
 
-[node name="ListaItems" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
+[node name="ItemList" type="Tree" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
 layout_mode = 2
-size_flags_vertical = 2
-auto_width = true
-auto_height = true
-item_count = 5
-item_0/text = "1"
-item_1/text = "2"
-item_2/text = "3"
-item_3/text = "4"
-item_4/text = "5"
 
 [node name="DivisorTotalCobrar" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
 layout_mode = 2

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16.933334mm"
+   height="16.933334mm"
+   viewBox="0 0 16.933334 16.933334"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="Documento de Logos Sikil.svg"
+   inkscape:export-batch-path="..\Logo Files\Iconic Mark"
+   inkscape:export-batch-name=""
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#b9b9b9"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1c2c2"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.69670057"
+     inkscape:cx="577.00542"
+     inkscape:cy="195.92348"
+     inkscape:window-width="1147"
+     inkscape:window-height="755"
+     inkscape:window-x="182"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="true" />
+  <defs
+     id="defs1">
+    <color-profile
+       name="sRGB-IEC61966-2.1"
+       xlink:href="file:///C:/WINDOWS/system32/spool/drivers/color/sRGB%20Color%20Space%20Profile.icm"
+       id="color-profile3" />
+    <color-profile
+       name="Agfa-:-Swop-Standard"
+       xlink:href="file:///C:/WINDOWS/system32/spool/drivers/color/RSWOP.icm"
+       id="color-profile4" />
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-177.21667,-123.175)">
+    <g
+       id="Icon_Color_x64"
+       transform="matrix(0.52916667,0,0,0.52916667,159.20978,89.888846)">
+      <g
+         id="g16">
+        <rect
+           style="fill:#3d0c11;fill-opacity:1;stroke:none;stroke-width:0.383;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;paint-order:stroke fill markers"
+           id="rect1"
+           width="32"
+           height="32"
+           x="34.02877"
+           y="62.902969"
+           ry="5.6727271" />
+        <path
+           id="path58-4"
+           style="fill:#f96900;fill-opacity:1;stroke:none;stroke-width:0.391231;stroke-dasharray:none;paint-order:stroke fill markers"
+           d="m 46.225859,64.902969 3.802909,2.562166 3.802913,-2.562166 h -3.802913 z m 1.503867,15.696148 -0.966772,-1.985102 -1.557578,2.031265 3.491123,3.014058 -5.679225,1.094641 -0.886207,-3.739378 4.309628,-4.616512 -1.396449,-6.555451 -0.805645,2.077433 -4.457895,0.230824 5.532086,-6.186127 4.715976,3.000733 4.71598,-3.000733 5.532086,6.186127 -4.457899,-0.230824 -0.805641,-2.077433 -1.396449,6.555451 4.309628,4.755008 -1.020482,3.600882 -5.54495,-1.094641 3.491122,-3.014058 -1.557578,-2.031265 -0.966772,1.985102 -2.299041,0.738641 z M 45.09437,74.828473 h -2.413347 l -1.235319,-1.660559 -2.416934,2.583861 2.363224,4.247197 z m -1.285445,14.475372 v -2.749424 l 6.219843,-1.338791 6.192993,1.361871 0.03798,2.553564 -6.230968,3.771904 z M 54.963169,74.828473 h 2.413348 l 1.235319,-1.660559 2.416934,2.583861 -2.363225,4.247197 z" />
+      </g>
+    </g>
+  </g>
+</svg>

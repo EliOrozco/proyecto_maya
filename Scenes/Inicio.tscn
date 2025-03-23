@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://boujr33l2qcv6"]
+
+[ext_resource type="Texture2D" uid="uid://b41cmbb21wyep" path="res://texture/logos/Logo Files/Full Lockup/Lockup_Color.png" id="1_aup5q"]
+[ext_resource type="Script" uid="uid://cpqwm5yf7eumj" path="res://Managers/InicioController.gd" id="1_g7cfe"]
+
+[node name="Inicio" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g7cfe")
+
+[node name="ColorInicio" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogoContainer" type="CenterContainer" parent="ColorInicio"]
+layout_mode = 2
+
+[node name="LogoBarraCarga" type="VBoxContainer" parent="ColorInicio/LogoContainer"]
+layout_mode = 2
+
+[node name="Logo" type="Sprite2D" parent="ColorInicio/LogoContainer"]
+position = Vector2(576, 308)
+texture = ExtResource("1_aup5q")
+offset = Vector2(0, -45.39)
+
+[node name="CargaInicio" type="ProgressBar" parent="ColorInicio/LogoContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+step = 1.0
+rounded = true
+
+[node name="Cargador" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Cargador" to="." method="_on_cargador_timeout"]

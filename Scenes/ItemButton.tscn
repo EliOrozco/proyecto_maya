@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmvs7vspfibd6"]
 
-[ext_resource type="Script" uid="uid://brmayyp5ovsbp" path="res://itemButtonManager.gd" id="1_csceu"]
+[ext_resource type="Script" uid="uid://brmayyp5ovsbp" path="res://Managers/itemButtonManager.gd" id="1_csceu"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_otroy"]
 [ext_resource type="Texture2D" uid="uid://dgv2tb3a4ef5f" path="res://icon.svg" id="2_d0lj2"]
 
@@ -13,6 +13,8 @@ offset_right = -877.0
 offset_bottom = -353.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 theme = ExtResource("1_otroy")
 script = ExtResource("1_csceu")
 
