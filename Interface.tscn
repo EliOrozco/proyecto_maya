@@ -1,19 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=6 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://interfaceManager.gd" id="1_qvr0x"]
 [ext_resource type="PackedScene" uid="uid://bmvs7vspfibd6" path="res://item_button.tscn" id="2_6lq5x"]
+[ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lq5x"]
 bg_color = Color(0.2, 0.458824, 0.596078, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q64hd"]
 bg_color = Color(0.952625, 0.406992, 0.235672, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhkvj"]
-bg_color = Color(0.839216, 0.847059, 0.156863, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_limw0"]
-bg_color = Color(0.964706, 0.921569, 0.905882, 1)
 
 [node name="Interfaz" type="Node2D"]
 script = ExtResource("1_qvr0x")
@@ -23,6 +18,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+theme = ExtResource("2_dhkvj")
 
 [node name="Divisor" type="HBoxContainer" parent="controladorDeInterfaz"]
 layout_mode = 1
@@ -114,12 +110,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q64hd")
 custom_minimum_size = Vector2(800, 648)
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_styles/tab_focus = SubResource("StyleBoxFlat_dhkvj")
-theme_override_styles/tab_disabled = SubResource("StyleBoxFlat_dhkvj")
-theme_override_styles/panel = SubResource("StyleBoxFlat_limw0")
-theme_override_styles/tab_selected = SubResource("StyleBoxFlat_dhkvj")
-theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_dhkvj")
-theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_dhkvj")
 current_tab = 0
 
 [node name="Ventas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
@@ -129,10 +119,9 @@ metadata/_tab_index = 0
 
 [node name="Buscador" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
-theme_override_colors/font_placeholder_color = Color(0.629675, 0.629675, 0.629675, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 placeholder_text = "Ingrese el nombre o código del producto"
 max_length = 50
+emoji_menu_enabled = false
 clear_button_enabled = true
 flat = true
 draw_control_chars = true
@@ -152,48 +141,6 @@ theme_override_constants/v_separation = 300
 columns = 3
 
 [node name="ItemButton" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton2" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton3" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton4" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton5" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton6" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton7" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton8" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton9" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton10" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton11" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton12" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton13" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton14" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
-
-[node name="ItemButton15" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
 layout_mode = 2
 
 [node name="Consultas" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
