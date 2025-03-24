@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=6 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
-[ext_resource type="PackedScene" uid="uid://bmvs7vspfibd6" path="res://Scenes/ItemButton.tscn" id="2_6lq5x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
 [ext_resource type="Texture2D" uid="uid://b41cmbb21wyep" path="res://texture/logos/Logo Files/Full Lockup/Lockup_Color.png" id="3_wi8ec"]
 
@@ -133,9 +132,6 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 260
 theme_override_constants/v_separation = 300
 columns = 3
-
-[node name="ItemButton" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("2_6lq5x")]
-layout_mode = 2
 
 [node name="Consultas" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
 visible = false
