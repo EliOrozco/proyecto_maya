@@ -11,7 +11,7 @@ func init(productQueryId : int, productText : String) -> void:#los atrubutos se 
 	productNameLabel.text = productText
 
 func _on_product_button_pressed() -> void:
-	var popUpInstance = popupscene.instantiate()
+	var popUpInstance = popupscene.instantiate()#crea la instancia para ser anadida 
 	add_child(popUpInstance)
 
 func aplicar_button_has_been_pressed():

@@ -1,10 +1,10 @@
 extends Node
 
 #imports y variables
-var value : int = 0
-var item_selected : int = 0
-var product_selected : int = 0
-var mod_selected : int = 0
+#var value : int = 0 
+#var item_selected : int = 0
+#var product_selected : int = 0
+#var mod_selected : int = 0
 
 var dbm = DbManager #connector a la base de datos, está siempre cargado, esta es su refenrecnai
 
@@ -25,9 +25,9 @@ func _process(_delta: float) -> void:
 func reload_item_buttons():
 	#aqui deberia haber codigo para limpiar todos los childs nodes
 	for i in dbm.dbItemSize: #creara un item por cada id que se haya registrado
-		var itemButtonInstance = itemsButtons.instantiate()
-		itemButtonInstance.init(dbm.idsProductos[i], dbm.nombresProductos[i])
-		itemContainer.add_child(itemButtonInstance)
+		var itemButtonInstance = itemsButtons.instantiate() #crear una instancia 
+		itemButtonInstance.init(dbm.idsProductos[i], dbm.nombresProductos[i]) #anade las porpiedades del obeto antes de ser creado 
+		itemContainer.add_child(itemButtonInstance) #anade el btpn como un child al menu
 
 func create_item_in_ticket(t):
 	itemList.add_item(str(t))
