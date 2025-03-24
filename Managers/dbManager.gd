@@ -1,6 +1,7 @@
 extends Node
 
 var db : SQLite
+var dbItemSize : int = 0
 var idsProductos : Array = []
 var nombresProductos : Array = []
 var preciosProductos : Array = []
@@ -13,13 +14,14 @@ func _ready() -> void:
 	initial_query()
 	
 func console_warning(s):
-	print(s)
+	print(str(s))
 
-func initial_query():
+func initial_query(): #query que trae los datos al godot
 	#consultas ids
 	select_query("productos", "", ["id"])
+	dbItemSize = int(db.query_result.size()) #sirve para determinar la cantidad de productos en la base de datos
 	for i in db.query_result.size():
-		idsProductos.append(str(db.query_result[i]["id"]))
+		idsProductos.append(int(db.query_result[i]["id"])) #se ñaden a una lista
 	
 	#consultas precios
 	select_query("productos", "", ["precio"])
@@ -30,9 +32,6 @@ func initial_query():
 	select_query("productos", "", ["nombre"])
 	for i in db.query_result.size():
 		nombresProductos.append(str(db.query_result[i]["nombre"]))
-	print(idsProductos)
-	print(preciosProductos)
-	print(nombresProductos)
 	
 func select_query(table : String, conditions : String, columns : Array):
 	db.select_rows(table, conditions, columns)

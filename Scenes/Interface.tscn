@@ -57,7 +57,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Nuevo Ticket"
 
-[node name="ItemList" type="Tree" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
+[node name="ItemList" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
 [node name="DivisorTotalCobrar" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
