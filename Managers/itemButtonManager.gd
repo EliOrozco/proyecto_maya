@@ -1,14 +1,22 @@
 extends Control
 
-@onready var popupscene : PackedScene = preload("res://Scenes/ModsPopUp.tscn")
+@onready var popupscene : PackedScene = preload("res://Scenes/ModsPopUp.tscn") #precarga el popup
 var productId : int
-var productNameLabel : RichTextLabel
+var productText : String
+var productPrice : float
+var productMods : Array
 
-func init(productQueryId : int, productText : String) -> void:#los atrubutos se asignan antes de ser creados
+var productNameLabel : RichTextLabel 
+
+func init(productQueryId : int, productQueryText : String) -> void:#los atrubutos se asignan antes de ser creados
 	#se deben añadir parametros para mandar al popup y la imagen
 	productId = productQueryId
-	productNameLabel = $ProductName
-	productNameLabel.text = productText
+	productText = productQueryText
+	#productPrice = productQueryBasePrice
+	#productMods = productQueryMods
+	productNameLabel = $ProductName #declaracion de la tag, no se puede precargar, tiene que ir en el init
+	
+	productNameLabel.text = productText #manda el texto al display del tag
 
 func _on_product_button_pressed() -> void:
 	var popUpInstance = popupscene.instantiate()#crea la instancia para ser anadida 

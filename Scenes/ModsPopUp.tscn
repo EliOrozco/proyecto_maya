@@ -52,9 +52,23 @@ middle_mouse_paste_enabled = false
 empty_selection_clipboard_enabled = false
 scroll_fit_content_height = true
 
-[node name="Tree" type="Tree" parent="DivisorMods"]
+[node name="DivisorTiposMods" type="VBoxContainer" parent="DivisorMods"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Tipo" type="ItemList" parent="DivisorMods/DivisorTiposMods"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+item_0/text = "Jamon"
+item_1/text = "asdasd"
+
+[node name="Mods" type="ItemList" parent="DivisorMods/DivisorTiposMods"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+item_0/text = "cebolla"
+item_1/text = "jitomate"
 
 [node name="DivisorBotonesMods" type="HBoxContainer" parent="DivisorMods"]
 layout_mode = 2
