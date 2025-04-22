@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmvs7vspfibd6"]
+[gd_scene load_steps=4 format=3 uid="uid://bmvs7vspfibd6"]
 
 [ext_resource type="Script" uid="uid://brmayyp5ovsbp" path="res://Managers/itemButtonManager.gd" id="1_csceu"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_otroy"]
 [ext_resource type="Texture2D" uid="uid://dgv2tb3a4ef5f" path="res://icon.svg" id="2_d0lj2"]
-[ext_resource type="Script" uid="uid://cadgxgcveeasf" path="res://Scenes/AnimationComponent.gd" id="4_tfkbb"]
 
 [node name="ItemButton" type="Control"]
 layout_mode = 3
@@ -51,11 +50,5 @@ offset_bottom = 295.0
 bbcode_enabled = true
 text = "Example 1, Example 2, Example 3"
 scroll_active = false
-
-[node name="AnimationComponent" type="Node" parent="."]
-script = ExtResource("4_tfkbb")
-hover_scale = Vector2(1.1, 1.1)
-transition_type = 2
-metadata/_custom_type_script = "uid://cadgxgcveeasf"
 
 [connection signal="pressed" from="ProductButton" to="." method="_on_product_button_pressed"]

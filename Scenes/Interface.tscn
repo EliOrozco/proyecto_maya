@@ -1,16 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=6 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
 [ext_resource type="Texture2D" uid="uid://b41cmbb21wyep" path="res://texture/logos/Logo Files/Full Lockup/Lockup_Color.png" id="3_wi8ec"]
-[ext_resource type="Script" uid="uid://cadgxgcveeasf" path="res://Scenes/AnimationComponent.gd" id="4_wi8ec"]
-[ext_resource type="PackedScene" uid="uid://bmvs7vspfibd6" path="res://Scenes/ItemButton.tscn" id="5_odcd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lq5x"]
 bg_color = Color(0.2, 0.458824, 0.596078, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odcd3"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q64hd"]
 bg_color = Color(0.952625, 0.406992, 0.235672, 1)
@@ -62,12 +57,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Nuevo Ticket"
 
-[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/NuevoTicketButton"]
-script = ExtResource("4_wi8ec")
-hover_scale = Vector2(1.1, 1.1)
-transition_type = 2
-metadata/_custom_type_script = "uid://cadgxgcveeasf"
-
 [node name="ItemList" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -93,36 +82,17 @@ fit_content = true
 scroll_active = false
 
 [node name="DivisorBotones" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
-custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 8
-size_flags_stretch_ratio = 0.0
 
 [node name="CancelarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
 layout_mode = 2
 text = "Cancelar"
 
-[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones/CancelarButton"]
-script = ExtResource("4_wi8ec")
-hover_scale = Vector2(1.1, 1.1)
-transition_type = 2
-metadata/_custom_type_script = "uid://cadgxgcveeasf"
-
-[node name="PanelContainer" type="PanelContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_odcd3")
-
 [node name="CobrarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
 layout_mode = 2
 text = "Cobrar"
-
-[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones/CobrarButton"]
-script = ExtResource("4_wi8ec")
-hover_scale = Vector2(1.1, 1.1)
-transition_type = 2
-metadata/_custom_type_script = "uid://cadgxgcveeasf"
 
 [node name="ColorDeFondoProductos" type="PanelContainer" parent="controladorDeInterfaz/Divisor"]
 layout_mode = 2
@@ -164,14 +134,7 @@ theme_override_constants/h_separation = 260
 theme_override_constants/v_separation = 300
 columns = 3
 
-<<<<<<< Updated upstream
 [node name="Consultas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
-=======
-[node name="ItemButton" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid" instance=ExtResource("5_odcd3")]
-layout_mode = 2
-
-[node name="Consultas" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
->>>>>>> Stashed changes
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
