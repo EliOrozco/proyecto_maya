@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=8 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
 [ext_resource type="Texture2D" uid="uid://b41cmbb21wyep" path="res://texture/logos/Logo Files/Full Lockup/Lockup_Color.png" id="3_wi8ec"]
+[ext_resource type="Script" uid="uid://bvs1ae4u45fqf" path="res://Managers/AnimationComponent.gd" id="4_wi8ec"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lq5x"]
 bg_color = Color(0.2, 0.458824, 0.596078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wi8ec"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q64hd"]
 bg_color = Color(0.952625, 0.406992, 0.235672, 1)
@@ -57,6 +61,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Nuevo Ticket"
 
+[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/NuevoTicketButton"]
+script = ExtResource("4_wi8ec")
+hover_scale = Vector2(1.1, 1.1)
+transition_type = 2
+metadata/_custom_type_script = "uid://bvs1ae4u45fqf"
+
 [node name="ItemList" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
@@ -83,16 +93,34 @@ scroll_active = false
 
 [node name="DivisorBotones" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 8
 
 [node name="CancelarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
 layout_mode = 2
 text = "Cancelar"
 
+[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones/CancelarButton"]
+script = ExtResource("4_wi8ec")
+hover_scale = Vector2(1.1, 1.1)
+transition_type = 2
+metadata/_custom_type_script = "uid://bvs1ae4u45fqf"
+
+[node name="PanelContainer" type="PanelContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wi8ec")
+
 [node name="CobrarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
 layout_mode = 2
 text = "Cobrar"
+
+[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones/CobrarButton"]
+script = ExtResource("4_wi8ec")
+hover_scale = Vector2(1.1, 1.1)
+transition_type = 2
+metadata/_custom_type_script = "uid://bvs1ae4u45fqf"
 
 [node name="ColorDeFondoProductos" type="PanelContainer" parent="controladorDeInterfaz/Divisor"]
 layout_mode = 2
