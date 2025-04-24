@@ -41,7 +41,7 @@ text = "[b]ProductName[/b]"
 fit_content = true
 scroll_active = false
 
-[node name="ProductMods" type="RichTextLabel" parent="."]
+[node name="ProductBasePrice" type="RichTextLabel" parent="."]
 layout_mode = 2
 offset_left = 16.0
 offset_top = 272.0

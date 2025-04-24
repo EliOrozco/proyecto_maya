@@ -149,6 +149,10 @@ flat = true
 draw_control_chars = true
 select_all_on_focus = true
 
+[node name="Volver" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
+layout_mode = 2
+text = "Volver"
+
 [node name="Scroller" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
 size_flags_vertical = 3

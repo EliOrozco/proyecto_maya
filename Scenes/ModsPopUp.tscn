@@ -3,19 +3,23 @@
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_oo8up"]
 [ext_resource type="Script" uid="uid://du3fdqpv7pkf5" path="res://Managers/ModsPopupsManager.gd" id="2_535je"]
 
-[node name="PopUp" type="Control"]
-z_index = 1
-custom_minimum_size = Vector2(250, 380)
-layout_mode = 3
-anchor_left = -0.25
-anchor_right = -0.25
-offset_left = 288.0
-offset_right = 538.0
-offset_bottom = 380.0
-theme = ExtResource("1_oo8up")
+[node name="PopUpWindow" type="Window"]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(260, 395)
+borderless = true
+transparent = true
 script = ExtResource("2_535je")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PopUp" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 380.0
+theme = ExtResource("1_oo8up")
+
+[node name="PanelContainer" type="PanelContainer" parent="PopUp"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DivisorMods" type="VBoxContainer" parent="."]
+[node name="DivisorMods" type="VBoxContainer" parent="PopUp"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,13 +35,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TituloProductoMods" type="RichTextLabel" parent="DivisorMods"]
+[node name="TituloProductoMods" type="RichTextLabel" parent="PopUp/DivisorMods"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[b]ProductName[/b]"
 fit_content = true
 
-[node name="DescProductoMods" type="TextEdit" parent="DivisorMods"]
+[node name="DescProductoMods" type="TextEdit" parent="PopUp/DivisorMods"]
 layout_mode = 2
 placeholder_text = "No hay texto pregenerado"
 editable = false
@@ -52,38 +56,38 @@ middle_mouse_paste_enabled = false
 empty_selection_clipboard_enabled = false
 scroll_fit_content_height = true
 
-[node name="DivisorTiposMods" type="VBoxContainer" parent="DivisorMods"]
+[node name="DivisorTiposMods" type="VBoxContainer" parent="PopUp/DivisorMods"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Tipo" type="ItemList" parent="DivisorMods/DivisorTiposMods"]
+[node name="Tipo" type="ItemList" parent="PopUp/DivisorMods/DivisorTiposMods"]
 layout_mode = 2
 size_flags_vertical = 3
 item_count = 2
 item_0/text = "Jamon"
 item_1/text = "asdasd"
 
-[node name="Mods" type="ItemList" parent="DivisorMods/DivisorTiposMods"]
+[node name="Mods" type="ItemList" parent="PopUp/DivisorMods/DivisorTiposMods"]
 layout_mode = 2
 size_flags_vertical = 3
 item_count = 2
 item_0/text = "cebolla"
 item_1/text = "jitomate"
 
-[node name="DivisorBotonesMods" type="HBoxContainer" parent="DivisorMods"]
+[node name="DivisorBotonesMods" type="HBoxContainer" parent="PopUp/DivisorMods"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="CancelarButtonMods" type="Button" parent="DivisorMods/DivisorBotonesMods"]
+[node name="CancelarButtonMods" type="Button" parent="PopUp/DivisorMods/DivisorBotonesMods"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Cancelar"
 
-[node name="AplicarButtonMods" type="Button" parent="DivisorMods/DivisorBotonesMods"]
+[node name="AplicarButtonMods" type="Button" parent="PopUp/DivisorMods/DivisorBotonesMods"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Aplicar"
 
-[connection signal="pressed" from="DivisorMods/DivisorBotonesMods/CancelarButtonMods" to="." method="_on_cancelar_button_mods_pressed"]
-[connection signal="pressed" from="DivisorMods/DivisorBotonesMods/AplicarButtonMods" to="." method="_on_aplicar_button_mods_pressed"]
+[connection signal="pressed" from="PopUp/DivisorMods/DivisorBotonesMods/CancelarButtonMods" to="PopUp" method="_on_cancelar_button_mods_pressed"]
+[connection signal="pressed" from="PopUp/DivisorMods/DivisorBotonesMods/AplicarButtonMods" to="PopUp" method="_on_aplicar_button_mods_pressed"]

@@ -1,5 +1,6 @@
-extends Control
-signal infoItem
+extends Node
+
+@onready var window = $PopUpWindow
 
 func _ready() -> void:
 	#onnect("infoItem", self, "infoItemFunc")
@@ -7,6 +8,7 @@ func _ready() -> void:
 
 func _on_cancelar_button_mods_pressed() -> void:
 	get_node(".").queue_free() #se elimina a si mismo para cancelar
+	window.queue_free()
 
 func _on_aplicar_button_mods_pressed() -> void:
 	pass
