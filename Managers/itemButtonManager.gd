@@ -21,6 +21,8 @@ func init(productQueryId : int, productQueryText : String, productQueryBasePrice
 	productPriceLabel.text = str(productPrice)
 
 func _on_product_button_pressed() -> void:
+	DbManager.mods_in_section_query(productId)
+	print(DbManager.modsList)
 	var popUpInstance = popupscene.instantiate()#crea la instancia para ser anadida 
 	add_child(popUpInstance)
 

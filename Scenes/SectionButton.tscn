@@ -34,10 +34,10 @@ texture = ExtResource("3_2n43l")
 layout_mode = 2
 offset_left = 16.0
 offset_top = 248.0
-offset_right = 160.0
+offset_right = 240.0
 offset_bottom = 272.0
 bbcode_enabled = true
-text = "[b]ProductName[/b]"
+text = "[b]SectionName[/b]"
 fit_content = true
 scroll_active = false
 
@@ -47,6 +47,9 @@ offset_left = 16.0
 offset_top = 272.0
 offset_right = 240.0
 offset_bottom = 295.0
+scale = Vector2(0.695, 0.695)
 bbcode_enabled = true
-text = "Example 1, Example 2, Example 3"
+text = "Description"
 scroll_active = false
+
+[connection signal="pressed" from="SectionButton" to="." method="_on_section_button_pressed"]

@@ -156,6 +156,7 @@ text = "Volver"
 [node name="Scroller" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 
 [node name="Grid" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller"]
 clip_contents = true
@@ -335,3 +336,5 @@ text = "Buscar y/o crear"
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
+
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]

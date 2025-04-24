@@ -1,7 +1,5 @@
 extends Node
 
-var dbm = DbManager #connector a la base de datos, está siempre cargado, esta es su refenrecnai
-
 #precargar recursos
 @onready var itemsButtons = preload("res://Scenes/ItemButton.tscn") #los botones para ser seleccionados, llama al nodo
 @onready var sectionButtons = preload("res://Scenes/SectionButton.tscn")
@@ -11,7 +9,6 @@ var dbm = DbManager #connector a la base de datos, está siempre cargado, esta e
 # Se ejecuta una sóla vez
 func _ready() -> void:
 	reload_item_sections_buttons()
-	#reload_item_types_buttons()
 	pass
 
 # Se ejecuta cada frame, reducir funciones que van aquí
@@ -19,27 +16,33 @@ func _process(_delta: float) -> void:
 	pass
 
 func clear_children_in_itemContainer():
-	for n in itemContainer:
-		itemContainer.remove_child(n)
-		n.queue_free()
+	var children = itemContainer.get_children()
+	for child in children:
+		child.queue_free()
 
 func reload_item_sections_buttons():
-	for i in dbm.dbSectionSize: #creará un botón por cada sección
+	for i in DbManager.dbSectionSize: #creará un botón por cada sección
 		var sectionInstance = sectionButtons.instantiate() #crear una instancia 
 		#anade las porpiedades del obeto antes de ser creado 
-		sectionInstance.init(dbm.idsSeccionesProductos[i], dbm.seccionesProductos[i])
+		sectionInstance.init(DbManager.idsSeccionesProductos[i], DbManager.seccionesNombres[i], DbManager.seccionesDescripciones[i])
 		itemContainer.add_child(sectionInstance) #anade el btpn como un child al menu
+		
+		#este es el conector al signal del children cuando el botón es presionado
+		sectionInstance.clear_items.connect(clear_children_in_itemContainer)
+		sectionInstance.create_section_buttons.connect(reload_item_types_buttons)
 
-func reload_item_types_buttons(): #aqui deberia haber codigo para limpiar todos los childs nodes
-	for i in dbm.dbItemSize: #creara un item por cada id que se haya registrado
+func reload_item_types_buttons(section): #aqui deberia haber codigo para limpiar todos los childs nodes
+	DbManager.products_in_section_query(section)
+	for i in DbManager.dbItemSize: #creara un item por cada id que se haya registrado
 		var itemButtonInstance = itemsButtons.instantiate() #crear una instancia 
 		#anade las porpiedades del obeto antes de ser creado 
-		itemButtonInstance.init(dbm.idsProductos[i], dbm.nombresProductos[i], dbm.preciosProductos[i])
+		itemButtonInstance.init(DbManager.idsProductos[i], DbManager.nombresProductos[i], DbManager.preciosProductos[i])
 		itemContainer.add_child(itemButtonInstance) #anade el btpn como un child al menu
-
-func clear_buttons():
-	var lista_childrens : Array = itemContainer.get_children()
-	print(lista_childrens)
 
 func create_item_in_ticket(t):
 	itemList.add_item(str(t))
+
+func _on_volver_pressed() -> void:
+	clear_children_in_itemContainer()
+	reload_item_sections_buttons()
+	DbManager.clear_section_queries()

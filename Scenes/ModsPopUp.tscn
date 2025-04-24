@@ -6,20 +6,26 @@
 [node name="PopUpWindow" type="Window"]
 transparent_bg = true
 initial_position = 1
-size = Vector2i(260, 395)
+size = Vector2i(490, 280)
+transient = true
+exclusive = true
+unresizable = true
 borderless = true
 transparent = true
+theme = ExtResource("1_oo8up")
 script = ExtResource("2_535je")
 
-[node name="PopUp" type="Control" parent="."]
-z_index = 1
+[node name="PopUP" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 250.0
-offset_bottom = 380.0
-theme = ExtResource("1_oo8up")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="PopUp"]
+[node name="ColorDeFondo" type="Panel" parent="PopUP"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DivisorMods" type="VBoxContainer" parent="PopUp"]
+[node name="ContenedotV" type="VBoxContainer" parent="PopUP/ColorDeFondo"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,59 +41,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TituloProductoMods" type="RichTextLabel" parent="PopUp/DivisorMods"]
+[node name="TextoTitulo" type="RichTextLabel" parent="PopUP/ColorDeFondo/ContenedotV"]
 layout_mode = 2
+size_flags_vertical = 4
 bbcode_enabled = true
-text = "[b]ProductName[/b]"
+text = "[color=white]Ingresa tus modificadores"
 fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DescProductoMods" type="TextEdit" parent="PopUp/DivisorMods"]
-layout_mode = 2
-placeholder_text = "No hay texto pregenerado"
-editable = false
-context_menu_enabled = false
-emoji_menu_enabled = false
-shortcut_keys_enabled = false
-selecting_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-virtual_keyboard_enabled = false
-middle_mouse_paste_enabled = false
-empty_selection_clipboard_enabled = false
-scroll_fit_content_height = true
-
-[node name="DivisorTiposMods" type="VBoxContainer" parent="PopUp/DivisorMods"]
+[node name="Margenes" type="MarginContainer" parent="PopUP/ColorDeFondo/ContenedotV"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Tipo" type="ItemList" parent="PopUp/DivisorMods/DivisorTiposMods"]
+[node name="ContenedorOpciones" type="HFlowContainer" parent="PopUP/ColorDeFondo/ContenedotV/Margenes"]
 layout_mode = 2
-size_flags_vertical = 3
-item_count = 2
-item_0/text = "Jamon"
-item_1/text = "asdasd"
 
-[node name="Mods" type="ItemList" parent="PopUp/DivisorMods/DivisorTiposMods"]
-layout_mode = 2
-size_flags_vertical = 3
-item_count = 2
-item_0/text = "cebolla"
-item_1/text = "jitomate"
-
-[node name="DivisorBotonesMods" type="HBoxContainer" parent="PopUp/DivisorMods"]
+[node name="DivisorBotones" type="HBoxContainer" parent="PopUP/ColorDeFondo/ContenedotV"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 
-[node name="CancelarButtonMods" type="Button" parent="PopUp/DivisorMods/DivisorBotonesMods"]
+[node name="CancelarButton" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorBotones"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "Cancelar"
 
-[node name="AplicarButtonMods" type="Button" parent="PopUp/DivisorMods/DivisorBotonesMods"]
+[node name="AceptarButton" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorBotones"]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Aplicar"
+text = "Aceptar"
 
-[connection signal="pressed" from="PopUp/DivisorMods/DivisorBotonesMods/CancelarButtonMods" to="PopUp" method="_on_cancelar_button_mods_pressed"]
-[connection signal="pressed" from="PopUp/DivisorMods/DivisorBotonesMods/AplicarButtonMods" to="PopUp" method="_on_aplicar_button_mods_pressed"]
+[connection signal="pressed" from="PopUP/ColorDeFondo/ContenedotV/DivisorBotones/CancelarButton" to="." method="_on_cancelar_button_pressed"]
