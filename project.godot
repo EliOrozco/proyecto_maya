@@ -27,7 +27,6 @@ DbManager="*res://Managers/dbManager.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/borderless=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
