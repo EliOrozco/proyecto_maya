@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dcmf725vhn78r"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dcmf725vhn78r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahkwg"]
 content_margin_left = 2.0
@@ -21,6 +21,15 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewfv4"]
+bg_color = Color(0.749439, 0.755736, 0.239736, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdfuw"]
+bg_color = Color(0.74902, 0.756863, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6qui"]
+bg_color = Color(0.981357, 0.340806, 0.46127, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj1td"]
 bg_color = Color(0.74902, 0.839216, 0.870588, 1)
@@ -97,10 +106,18 @@ Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.172549, 0.172549, 0.172549, 1)
 Button/colors/font_hover_color = Color(0.2, 0.458824, 0.596078, 1)
 Button/colors/font_hover_pressed_color = Color(0.2, 0.458824, 0.596078, 1)
+Button/font_sizes/font_size = 19
 Button/styles/disabled = null
 Button/styles/focus = null
 Button/styles/hover = SubResource("StyleBoxFlat_ahkwg")
 Button/styles/normal = SubResource("StyleBoxFlat_wspdh")
+CheckBox/constants/h_separation = 10
+CheckBox/font_sizes/font_size = 20
+CheckBox/styles/focus = null
+CheckBox/styles/hover = SubResource("StyleBoxFlat_ewfv4")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_qdfuw")
+CheckBox/styles/normal = null
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_p6qui")
 ItemList/colors/font_hovered_color = Color(0, 0, 0, 1)
 ItemList/colors/font_hovered_selected_color = Color(0, 0, 0, 1)
 ItemList/colors/font_outline_color = Color(0, 0, 0, 1)
@@ -128,6 +145,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_2xhu8")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 TabContainer/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 TabContainer/colors/font_selected_color = Color(0, 0, 0, 1)
+TabContainer/constants/outline_size = 1
 TabContainer/constants/side_margin = 0
 TabContainer/font_sizes/font_size = 20
 TabContainer/styles/panel = SubResource("StyleBoxFlat_yflx7")

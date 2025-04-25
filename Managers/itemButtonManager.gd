@@ -1,5 +1,7 @@
 extends Control
 
+signal sendOptionsSelected(itemSelected, OptionsSelected)
+
 @onready var popupscene : PackedScene = preload("res://Scenes/ModsPopUp.tscn") #precarga el popup
 var productId : int
 var productText : String
@@ -22,9 +24,12 @@ func init(productQueryId : int, productQueryText : String, productQueryBasePrice
 
 func _on_product_button_pressed() -> void:
 	DbManager.mods_in_section_query(productId)
-	print(DbManager.modsList)
-	var popUpInstance = popupscene.instantiate()#crea la instancia para ser anadida 
+	var popUpInstance = popupscene.instantiate() #crea la instancia para ser anadida 
 	add_child(popUpInstance)
+	popUpInstance.sendOptionsSelected.connect(send_options_selected_upward)
+
+func send_options_selected_upward(optionsSelected, cantidadSelected):
+	sendOptionsSelected.emit(productId, optionsSelected, cantidadSelected)
 
 func aplicar_button_has_been_pressed():
 	pass

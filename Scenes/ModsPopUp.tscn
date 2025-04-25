@@ -6,7 +6,7 @@
 [node name="PopUpWindow" type="Window"]
 transparent_bg = true
 initial_position = 1
-size = Vector2i(490, 280)
+size = Vector2i(555, 400)
 transient = true
 exclusive = true
 unresizable = true
@@ -44,6 +44,8 @@ grow_vertical = 2
 [node name="TextoTitulo" type="RichTextLabel" parent="PopUP/ColorDeFondo/ContenedotV"]
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
 bbcode_enabled = true
 text = "[color=white]Ingresa tus modificadores"
 fit_content = true
@@ -61,17 +63,53 @@ theme_override_constants/margin_bottom = 20
 [node name="ContenedorOpciones" type="HFlowContainer" parent="PopUP/ColorDeFondo/ContenedotV/Margenes"]
 layout_mode = 2
 
+[node name="DivisorCantidad" type="HBoxContainer" parent="PopUP/ColorDeFondo/ContenedotV"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PopUP/ColorDeFondo/ContenedotV/DivisorCantidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cantidad:"
+horizontal_alignment = 1
+
+[node name="Cantidad" type="SpinBox" parent="PopUP/ColorDeFondo/ContenedotV/DivisorCantidad"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+value = 1.0
+alignment = 1
+custom_arrow_step = 1.0
+
+[node name="DivisorSelectores" type="HBoxContainer" parent="PopUP/ColorDeFondo/ContenedotV"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SeleccionarNada" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quitar Too"
+
+[node name="SeleccionarTodo" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "Añadir Todo"
+
 [node name="DivisorBotones" type="HBoxContainer" parent="PopUP/ColorDeFondo/ContenedotV"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="CancelarButton" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorBotones"]
 layout_mode = 2
-text = "Cancelar"
+size_flags_horizontal = 3
+text = "Cancelar "
 
 [node name="AceptarButton" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorBotones"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Aceptar"
 
+[connection signal="pressed" from="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores/SeleccionarNada" to="." method="_on_seleccionar_nada_pressed"]
+[connection signal="pressed" from="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores/SeleccionarTodo" to="." method="_on_seleccionar_todo_pressed"]
 [connection signal="pressed" from="PopUP/ColorDeFondo/ContenedotV/DivisorBotones/CancelarButton" to="." method="_on_cancelar_button_pressed"]
+[connection signal="pressed" from="PopUP/ColorDeFondo/ContenedotV/DivisorBotones/AceptarButton" to="." method="_on_aceptar_button_pressed"]

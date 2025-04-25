@@ -23,6 +23,14 @@ config/icon="uid://bxgb7g2ls52ra"
 
 DbManager="*res://Managers/dbManager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/borderless=true
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 click={
@@ -44,3 +52,4 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.2, 0.458824, 0.596078, 1)

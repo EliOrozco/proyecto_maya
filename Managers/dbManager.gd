@@ -17,6 +17,11 @@ var preciosProductos : Array = []
 #lista de mods en un tipo
 var modsList : Array = []
 
+#info de los mods
+var idMod : int
+var nombreMod : String
+var ajustePrecioMod : float
+
 func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abre para acceder a esos valores 
 	db = SQLite.new()
 	db.path = "res://database.db"
@@ -44,7 +49,7 @@ func initial_query(): #query que trae los datos al godot
 	for i in dbSectionSize:
 		seccionesDescripciones.append(str(db.query_result[i]["descripcion"]))
 
-func products_in_section_query(sectionVarQuery : int):
+func products_in_section_query(sectionVarQuery : int): #TODO Limpiar consultas
 	var sectionVar : int = sectionVarQuery
 	var set_condition : String = "producto_id=" + str(sectionVar)
 	
@@ -72,14 +77,28 @@ func mods_in_section_query(sectionModsVarQuery : int):
 	for i in modsListSize:
 		modsList.append(int(db.query_result[i]["modificador_id"]))
 
+func get_mod_info(idModQuery : int):
+	idMod = idModQuery
+	var set_condition = "modificador_id=" + str(idMod)
+	select_query("modificadores", set_condition, ["nombre", "ajuste_precio"])
+	
+	nombreMod = str(db.query_result[0]["nombre"])
+	
+	if (float(db.query_result[0]["ajuste_precio"]) > 0):
+		nombreMod = nombreMod + " (+$" + str(db.query_result[0]["ajuste_precio"]) + ")"
+
 func clear_section_queries():
 	idsProductos.clear()
 	nombresProductos.clear()
 	preciosProductos.clear()
-	#modsList.clear()
 
 func clear_mods_queries():
 	modsList.clear()
+	
+func clear_mod_info():
+	idMod = 0
+	nombreMod = ""
+	ajustePrecioMod = 0.0
 
 func select_query(table : String, conditions : String, columns : Array): #anade el preformato para hacer consultas 
 	db.select_rows(table, conditions, columns)

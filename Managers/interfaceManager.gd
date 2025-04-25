@@ -4,7 +4,7 @@ extends Node
 @onready var itemsButtons = preload("res://Scenes/ItemButton.tscn") #los botones para ser seleccionados, llama al nodo
 @onready var sectionButtons = preload("res://Scenes/SectionButton.tscn")
 @onready var itemContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
-@onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/ItemList
+@onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
 
 # Se ejecuta una sóla vez
 func _ready() -> void:
@@ -38,9 +38,11 @@ func reload_item_types_buttons(section): #aqui deberia haber codigo para limpiar
 		#anade las porpiedades del obeto antes de ser creado 
 		itemButtonInstance.init(DbManager.idsProductos[i], DbManager.nombresProductos[i], DbManager.preciosProductos[i])
 		itemContainer.add_child(itemButtonInstance) #anade el btpn como un child al menu
+		
+		itemButtonInstance.sendOptionsSelected.connect(create_item_in_ticket)
 
-func create_item_in_ticket(t):
-	itemList.add_item(str(t))
+func create_item_in_ticket(itemSelected,optionsSelected,cantidadSelected):
+	itemList.add_item(str(cantidadSelected) + " x " + str(itemSelected) + " " + str(optionsSelected))
 
 func _on_volver_pressed() -> void:
 	clear_children_in_itemContainer()
