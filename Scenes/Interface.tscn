@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=9 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
@@ -13,6 +13,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q64hd"]
 bg_color = Color(0.952625, 0.406992, 0.235672, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbk52"]
+bg_color = Color(1, 1, 0, 1)
 
 [node name="Interfaz" type="Node2D"]
 script = ExtResource("1_qvr0x")
@@ -58,13 +61,26 @@ layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="NuevoTicketButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
+[node name="HBoxContainer" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "Nuevo Ticket"
 
-[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/NuevoTicketButton"]
+[node name="NuevoTicketButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Terminar e Imprimir"
+
+[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/NuevoTicketButton"]
+script = ExtResource("4_wi8ec")
+hover_scale = Vector2(1.1, 1.1)
+transition_type = 2
+metadata/_custom_type_script = "uid://bvs1ae4u45fqf"
+
+[node name="EliminarItem" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer"]
+layout_mode = 2
+text = "Eliminar Item"
+
+[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/EliminarItem"]
 script = ExtResource("4_wi8ec")
 hover_scale = Vector2(1.1, 1.1)
 transition_type = 2
@@ -350,4 +366,22 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
+[node name="NotifPanel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(475, 100)
+offset_right = 50.0
+offset_bottom = 50.0
+
+[node name="TextoNotif" type="RichTextLabel" parent="NotifPanel"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_mbk52")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="NotifPanel"]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]
+[connection signal="timeout" from="NotifPanel/Timer" to="." method="_on_timer_timeout"]

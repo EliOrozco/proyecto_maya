@@ -26,27 +26,16 @@ func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abr
 	db = SQLite.new()
 	db.path = "res://database.db"
 	db.open_db()
-	console_warning("Se ha abierto una base de datos aquí -> res://database.db")
+	print("Se ha abierto una base de datos aquí -> res://database.db")
 	initial_query()
-	
-func console_warning(s): #imprime texto a consola   
-	print(str(s))
 
 func initial_query(): #query que trae los datos al godot
-	#consulta ids secciones
-	select_query("productos", "", ["producto_id"])
+	#consulta ids secciones, nombres y descripciones
+	select_query("productos", "", ["producto_id","nombre","descripcion"])
 	dbSectionSize = int(db.query_result.size()) #determina el tamaño de la consulta para futuras referencias
 	for i in dbSectionSize:
 		idsSeccionesProductos.append(int(db.query_result[i]["producto_id"]))
-	
-	#consulta nombres secciones
-	select_query("productos", "", ["nombre"])
-	for i in dbSectionSize:
 		seccionesNombres.append(str(db.query_result[i]["nombre"]))
-		
-	#consulta descripciones de las secciones
-	select_query("productos", "", ["descripcion"])
-	for i in dbSectionSize:
 		seccionesDescripciones.append(str(db.query_result[i]["descripcion"]))
 
 func products_in_section_query(sectionVarQuery : int): #TODO Limpiar consultas
@@ -54,19 +43,11 @@ func products_in_section_query(sectionVarQuery : int): #TODO Limpiar consultas
 	var set_condition : String = "producto_id=" + str(sectionVar)
 	
 	#consultas ids de tipos
-	select_query("producto_tipos", set_condition, ["producto_tipo_id"])
+	select_query("producto_tipos", set_condition, ["producto_tipo_id","precio_base","tipo_nombre"])
 	dbItemSize = int(db.query_result.size()) #sirve para determinar la cantidad de productos en la base de datos
 	for i in dbItemSize:
 		idsProductos.append(int(db.query_result[i]["producto_tipo_id"])) #se ñaden a una lista
-	
-	#consultas precios
-	select_query("producto_tipos", set_condition, ["precio_base"]) #sirve para traer los precios de la base de datos 
-	for i in dbItemSize:
 		preciosProductos.append(float(db.query_result[i]["precio_base"]))
-	
-	#consultas nombres
-	select_query("producto_tipos", set_condition, ["tipo_nombre"]) #sirve para traer los nombres a la base de datos
-	for i in dbItemSize:
 		nombresProductos.append(str(db.query_result[i]["tipo_nombre"]))
 
 func mods_in_section_query(sectionModsVarQuery : int):
@@ -87,6 +68,34 @@ func get_mod_info(idModQuery : int):
 	if (float(db.query_result[0]["ajuste_precio"]) > 0):
 		nombreMod = nombreMod + " (+$" + str(db.query_result[0]["ajuste_precio"]) + ")"
 
+func get_product(idProductQuery):
+	var idProduct = idProductQuery
+	var set_condition = "modificador_id=" + str(idProduct)
+	select_query("modificadores", set_condition, ["nombre", "ajuste_precio"])
+
+func create_ticket():
+	var get_time = Time.get_datetime_string_from_system(false, true)
+	var data_dict = {
+		"fecha" : get_time
+	}
+	insert_query("tickets", data_dict)
+
+func create_ticket_items(producto_tipo_id_query : int, cantidadQuery : int, precioBaseQuery : float):
+	var data_dict = {
+		"ticket_id" : get_last_created_ticket(),
+		"producto_tipo_id" : producto_tipo_id_query,
+		"cantidad" : cantidadQuery,
+		"precioBase" : precioBaseQuery,
+		"precioTotal" : cantidadQuery * precioBaseQuery
+	}
+	insert_query("ticket_items", data_dict)
+	
+func create_ticket_item_mod():
+	pass
+
+func get_last_created_ticket() -> int:
+	return int(db.query("SELECT ticket_id from tickets ORDER by ticket_id DESC LIMIT 1;"))
+
 func clear_section_queries():
 	idsProductos.clear()
 	nombresProductos.clear()
@@ -102,3 +111,6 @@ func clear_mod_info():
 
 func select_query(table : String, conditions : String, columns : Array): #anade el preformato para hacer consultas 
 	db.select_rows(table, conditions, columns)
+
+func insert_query(table : String, dict : Dictionary):
+	db.insert_row(table, dict)
