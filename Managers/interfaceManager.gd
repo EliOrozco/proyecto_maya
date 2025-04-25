@@ -5,6 +5,9 @@ extends Node
 @onready var sectionButtons = preload("res://Scenes/SectionButton.tscn")
 @onready var itemContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
 @onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
+@onready var notifPanel = $NotifPanel
+@onready var notifPanelText = $NotifPanel/TextoNotif
+@onready var notifPanelTimer = $NotifPanel/Timer
 
 # Se ejecuta una sóla vez
 func _ready() -> void:
@@ -48,3 +51,12 @@ func _on_volver_pressed() -> void:
 	clear_children_in_itemContainer()
 	reload_item_sections_buttons()
 	DbManager.clear_section_queries()
+
+func send_msg_to_notif(notiftext : String):
+	notifPanelText.text = notiftext
+	notifPanel.visible = true
+	notifPanelTimer.start()
+
+func _on_timer_timeout() -> void:
+	notifPanelText.text = ""
+	notifPanel.visible = false
