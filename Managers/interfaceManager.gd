@@ -44,8 +44,11 @@ func reload_item_types_buttons(section): #aqui deberia haber codigo para limpiar
 		
 		itemButtonInstance.sendOptionsSelected.connect(create_item_in_ticket)
 
-func create_item_in_ticket(itemSelected,optionsSelected,cantidadSelected):
-	itemList.add_item(str(cantidadSelected) + " x " + str(itemSelected) + " " + str(optionsSelected))
+func create_item_in_ticket(productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice):
+	DbManager.create_ticket_items(productId,cantidadSelected,productPrice)
+	for i in optionsSelected:
+		DbManager.create_mod_in_ticket_item(i,i)
+	itemList.add_item(str(productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice))
 
 func _on_volver_pressed() -> void:
 	clear_children_in_itemContainer()
