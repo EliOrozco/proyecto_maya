@@ -6,6 +6,8 @@ signal sendOptionsSelected(optionsSelected, optionsSelectedNames, optionsSelecte
 @onready var optionsContainer = $PopUP/ColorDeFondo/ContenedotV/Margenes/ContenedorOpciones
 @onready var cantidadSelector = $PopUP/ColorDeFondo/ContenedotV/DivisorCantidad/Cantidad
 
+#var modsIdQueried : Array = []
+
 var optionsSelected : Array = []
 var optionsSelectedNames : Array = []
 var optionsSelectedPrices : Array = []
@@ -37,13 +39,15 @@ func _on_seleccionar_nada_pressed() -> void:
 
 func _on_aceptar_button_pressed() -> void:
 	var children = optionsContainer.get_children()
+	var i : int = 0
 	for child in children:
-		var i = 0;
 		if child.button_pressed == true:
-			i = i + 1
 			optionsSelected.append(DbManager.modsList[i])
-			optionsSelectedNames.append(DbManager.nombreMod)
-			optionsSelectedPrices.append(DbManager.ajustePrecioMod)
+		i = i + 1
+	for j in optionsSelected.size():
+		DbManager.get_mod_info(optionsSelected[j])
+		optionsSelectedNames.append(DbManager.nombreMod)
+		optionsSelectedPrices.append(DbManager.ajustePrecioMod)
 	
 	#send to main scene
 	var cantidadSelected : int = cantidadSelector.value

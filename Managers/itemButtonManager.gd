@@ -1,8 +1,9 @@
 extends Control
 
-signal sendOptionsSelected(productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice)
+signal sendOptionsSelected(productBigName, productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices, cantidadSelected, productPrice)
 
 @onready var popupscene : PackedScene = preload("res://Scenes/ModsPopUp.tscn") #precarga el popup
+var productBigName : String
 var productId : int
 var productText : String
 var productPrice : float
@@ -11,7 +12,11 @@ var productMods : Array
 var productNameLabel : RichTextLabel 
 var productPriceLabel : RichTextLabel
 
-func init(productQueryId : int, productQueryText : String, productQueryBasePrice : float) -> void:#los atrubutos se asignan antes de ser creados
+func init(productBigNameQuery : String,productQueryId : int, productQueryText : String, productQueryBasePrice : float) -> void:
+	#los atrubutos se asignan antes de ser creados
+	
+	productBigName = productBigNameQuery #esto es porque al parecer los tipos no sabían que producto eran lol
+	
 	#se deben añadir parametros para mandar al popup y la imagen
 	productId = productQueryId
 	productText = productQueryText
@@ -29,7 +34,7 @@ func _on_product_button_pressed() -> void:
 	popUpInstance.sendOptionsSelected.connect(send_options_selected_upward)
 
 func send_options_selected_upward(optionsSelected, optionsSelectedNames, optionsSelectedPrices, cantidadSelected):
-	sendOptionsSelected.emit(productId, productText,optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice)
+	sendOptionsSelected.emit(productBigName, productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice)
 
 func aplicar_button_has_been_pressed():
 	pass

@@ -8,6 +8,10 @@ extends Node
 @onready var notifPanel = $NotifPanel
 @onready var notifPanelText = $NotifPanel/TextoNotif
 @onready var notifPanelTimer = $NotifPanel/Timer
+@onready var ticketSizeLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/DivisorTicketNumber/TicketNumberLab
+@onready var ticketFinalPriceLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorTotalCobrar/CobroTicketText
+
+var current_ticket : Array = [] #aqui vas a guardar diccionarios de los items
 
 # Se ejecuta una sóla vez
 func _ready() -> void:
@@ -16,6 +20,7 @@ func _ready() -> void:
 
 # Se ejecuta cada frame, reducir funciones que van aquí
 func _process(_delta: float) -> void:
+	ticketSizeLabel.text = str(current_ticket.size()) #sacar de aqui, no debe ejecutarse cada frame
 	pass
 
 func clear_children_in_itemContainer():
@@ -39,16 +44,43 @@ func reload_item_types_buttons(section): #aqui deberia haber codigo para limpiar
 	for i in DbManager.dbItemSize: #creara un item por cada id que se haya registrado
 		var itemButtonInstance = itemsButtons.instantiate() #crear una instancia 
 		#anade las porpiedades del obeto antes de ser creado 
-		itemButtonInstance.init(DbManager.idsProductos[i], DbManager.nombresProductos[i], DbManager.preciosProductos[i])
+		itemButtonInstance.init(DbManager.seccionesNombres[section-1], DbManager.idsProductos[i], DbManager.nombresProductos[i], DbManager.preciosProductos[i])
 		itemContainer.add_child(itemButtonInstance) #anade el btpn como un child al menu
 		
 		itemButtonInstance.sendOptionsSelected.connect(create_item_in_ticket)
 
-func create_item_in_ticket(productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice):
-	DbManager.create_ticket_items(productId,cantidadSelected,productPrice)
-	for i in optionsSelected:
-		DbManager.create_mod_in_ticket_item(i,i)
-	itemList.add_item(str(productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice))
+func create_item_in_ticket(productBigName, productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice):
+	var modsFinalPrices : float = 0.0
+	
+	for i in optionsSelectedPrices.size():
+		modsFinalPrices = modsFinalPrices + optionsSelectedPrices[i]
+	
+	var productFinalPrice = cantidadSelected * (productPrice + modsFinalPrices)
+	
+	var item = { #se crea un diccionario para guardar todo
+		"id_producto" : productId,
+		"cantidad" : cantidadSelected,
+		"nombre_producto" : productBigName,
+		"nombre" : productText,
+		"modificadores_ids" : optionsSelected,
+		"modificadores_nombres" : optionsSelectedNames,
+		"modificadores_precios" : optionsSelectedPrices,
+		"precio_sin_modificadores" : productPrice,
+		"precio_final" : productFinalPrice
+	}
+	current_ticket.append(item)
+	
+	add_to_list(item)
+
+func add_to_list(inputDict : Dictionary):
+	var mods_sin_comillas : String = ""
+	for i in inputDict["modificadores_nombres"].size():
+		mods_sin_comillas = mods_sin_comillas + str(inputDict["modificadores_nombres"][i]) + ", "
+
+	itemList.add_item("($" + str(inputDict["precio_final"]) + ") " + str(inputDict["cantidad"]) + " x " + str(inputDict["nombre_producto"]) + " - " + str(inputDict["nombre"]) + " [" + mods_sin_comillas + "]")
+
+func write_ticket_and_print():
+	pass
 
 func _on_volver_pressed() -> void:
 	clear_children_in_itemContainer()
