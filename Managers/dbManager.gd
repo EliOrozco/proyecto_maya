@@ -64,6 +64,7 @@ func get_mod_info(idModQuery : int):
 	select_query("modificadores", set_condition, ["nombre", "ajuste_precio"])
 	
 	nombreMod = str(db.query_result[0]["nombre"])
+	ajustePrecioMod = float(db.query_result[0]["ajuste_precio"])
 	
 	if (float(db.query_result[0]["ajuste_precio"]) > 0):
 		nombreMod = nombreMod + " (+$" + str(db.query_result[0]["ajuste_precio"]) + ")"
@@ -85,16 +86,26 @@ func create_ticket_items(producto_tipo_id_query : int, cantidadQuery : int, prec
 		"ticket_id" : get_last_created_ticket(),
 		"producto_tipo_id" : producto_tipo_id_query,
 		"cantidad" : cantidadQuery,
-		"precioBase" : precioBaseQuery,
-		"precioTotal" : cantidadQuery * precioBaseQuery
+		"precio_base" : precioBaseQuery,
+		"precio_total" : cantidadQuery * precioBaseQuery
 	}
 	insert_query("ticket_items", data_dict)
 	
-func create_ticket_item_mod():
-	pass
+func create_mod_in_ticket_item(modificador_id_query : int, ajuste_precio_query : float):
+	var data_dict = {
+		"ticket_item_id" : get_last_created_ticket_item(),
+		"modificador_id" : modificador_id_query,
+		"ajuste_precio"  : ajuste_precio_query
+	}
+	insert_query("ticket_item_modificadores", data_dict)
 
 func get_last_created_ticket() -> int:
-	return int(db.query("SELECT ticket_id from tickets ORDER by ticket_id DESC LIMIT 1;"))
+	db.query("SELECT ticket_id from tickets ORDER by ticket_id DESC LIMIT 1;")
+	return int(db.query_result[0]["ticket_id"])
+	
+func get_last_created_ticket_item() -> int:
+	db.query("SELECT ticket_item_id from ticket_items ORDER by ticket_item_id DESC LIMIT 1;")
+	return int(db.query_result[0]["ticket_item_id"])
 
 func clear_section_queries():
 	idsProductos.clear()

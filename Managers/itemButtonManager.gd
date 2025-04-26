@@ -1,6 +1,6 @@
 extends Control
 
-signal sendOptionsSelected(itemSelected, OptionsSelected)
+signal sendOptionsSelected(productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice)
 
 @onready var popupscene : PackedScene = preload("res://Scenes/ModsPopUp.tscn") #precarga el popup
 var productId : int
@@ -28,8 +28,8 @@ func _on_product_button_pressed() -> void:
 	add_child(popUpInstance)
 	popUpInstance.sendOptionsSelected.connect(send_options_selected_upward)
 
-func send_options_selected_upward(optionsSelected, cantidadSelected):
-	sendOptionsSelected.emit(productId, optionsSelected, cantidadSelected)
+func send_options_selected_upward(optionsSelected, optionsSelectedNames, optionsSelectedPrices, cantidadSelected):
+	sendOptionsSelected.emit(productId, productText,optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice)
 
 func aplicar_button_has_been_pressed():
 	pass
