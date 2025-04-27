@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tew6f7mb2xgq"
-path="res://.godot/imported/hotdog_sencillo.jpg-a2a0e415941f6bcc8a83e2a812d79b54.ctex"
+uid="uid://bbnc31uuc1l5r"
+path="res://.godot/imported/agua_1l.jpg-a2736aacb8e9137f1d643a0ffbdc933f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagenes/hotdog_sencillo.jpg"
-dest_files=["res://.godot/imported/hotdog_sencillo.jpg-a2a0e415941f6bcc8a83e2a812d79b54.ctex"]
+source_file="res://texture/defaults/agua_1l.jpg"
+dest_files=["res://.godot/imported/agua_1l.jpg-a2736aacb8e9137f1d643a0ffbdc933f.ctex"]
 
 [params]
 

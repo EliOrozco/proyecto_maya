@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_jn16m"]
 [ext_resource type="Script" uid="uid://d1mjv6s065mst" path="res://Managers/sectionButtonManager.gd" id="2_jn16m"]
-[ext_resource type="Texture2D" uid="uid://bbnc31uuc1l5r" path="res://imagenes/agua_1l.jpg" id="3_jn16m"]
+[ext_resource type="Texture2D" uid="uid://bbnc31uuc1l5r" path="res://texture/defaults/agua_1l.jpg" id="3_jn16m"]
 
 [node name="SectionButton" type="Control"]
 layout_mode = 3

@@ -20,7 +20,7 @@ func _ready() -> void:
 
 # Se ejecuta cada frame, reducir funciones que van aquí
 func _process(_delta: float) -> void:
-	ticketSizeLabel.text = str(DbManager.get_last_created_ticket() + 1) #sacar de aqui, no debe ejecutarse cada frame
+	ticketSizeLabel.text = "#" + str(DbManager.get_last_created_ticket() + 1) #sacar de aqui, no debe ejecutarse cada frame
 	pass
 
 func clear_children_in_itemContainer():
