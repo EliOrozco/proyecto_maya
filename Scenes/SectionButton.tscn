@@ -2,15 +2,15 @@
 
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_jn16m"]
 [ext_resource type="Script" uid="uid://d1mjv6s065mst" path="res://Managers/sectionButtonManager.gd" id="2_jn16m"]
-[ext_resource type="Texture2D" uid="uid://dgv2tb3a4ef5f" path="res://icon.svg" id="3_2n43l"]
+[ext_resource type="Texture2D" uid="uid://bbnc31uuc1l5r" path="res://imagenes/agua_1l.jpg" id="3_jn16m"]
 
 [node name="SectionButton" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -877.0
-offset_bottom = -353.0
+offset_right = -1024.0
+offset_bottom = -424.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
@@ -26,9 +26,9 @@ offset_right = 232.0
 offset_bottom = 224.0
 
 [node name="SectionImage" type="Sprite2D" parent="."]
-position = Vector2(136, 128)
-scale = Vector2(1.875, 1.875)
-texture = ExtResource("3_2n43l")
+position = Vector2(130.4, 122.4)
+scale = Vector2(0.459375, 0.459375)
+texture = ExtResource("3_jn16m")
 
 [node name="SectionName" type="RichTextLabel" parent="."]
 layout_mode = 2

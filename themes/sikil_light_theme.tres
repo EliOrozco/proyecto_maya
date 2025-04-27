@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dcmf725vhn78r"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://dcmf725vhn78r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahkwg"]
 content_margin_left = 2.0
@@ -30,6 +30,12 @@ bg_color = Color(0.74902, 0.756863, 0.239216, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6qui"]
 bg_color = Color(0.981357, 0.340806, 0.46127, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xaxnx"]
+bg_color = Color(0.918982, 0.316809, 0.374463, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s80l"]
+bg_color = Color(0.944321, 0.393835, 0.430318, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj1td"]
 bg_color = Color(0.74902, 0.839216, 0.870588, 1)
@@ -118,6 +124,8 @@ CheckBox/styles/hover = SubResource("StyleBoxFlat_ewfv4")
 CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_qdfuw")
 CheckBox/styles/normal = null
 CheckBox/styles/pressed = SubResource("StyleBoxFlat_p6qui")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_xaxnx")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_0s80l")
 ItemList/colors/font_hovered_color = Color(0, 0, 0, 1)
 ItemList/colors/font_hovered_selected_color = Color(0, 0, 0, 1)
 ItemList/colors/font_outline_color = Color(0, 0, 0, 1)

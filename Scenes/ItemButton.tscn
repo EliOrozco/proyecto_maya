@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brmayyp5ovsbp" path="res://Managers/itemButtonManager.gd" id="1_csceu"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_otroy"]
-[ext_resource type="Texture2D" uid="uid://dl8fl1t745ljq" path="res://imagenes/c96d1fa6c680ce5cd2662c2025aaaa2c.jpg" id="3_0748q"]
+[ext_resource type="Texture2D" uid="uid://c7dam6iti80l" path="res://imagenes/chocolate.jpg" id="3_0748q"]
 
 [node name="ItemButton" type="Control"]
 layout_mode = 3
@@ -26,8 +26,8 @@ offset_right = 232.0
 offset_bottom = 224.0
 
 [node name="ProductImage" type="Sprite2D" parent="."]
-position = Vector2(122, 130)
-scale = Vector2(0.460938, 0.460938)
+position = Vector2(128, 128)
+scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("3_0748q")
 
 [node name="ProductName" type="RichTextLabel" parent="."]

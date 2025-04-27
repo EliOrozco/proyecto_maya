@@ -8,11 +8,13 @@ var dbSectionSize : int = 0
 var idsSeccionesProductos : Array = []
 var seccionesNombres : Array = []
 var seccionesDescripciones : Array = []
+var seccionesImg : Array = []
 
 #tipos de prodctos
 var idsProductos : Array = []
 var nombresProductos : Array = []
 var preciosProductos : Array = []
+var imgsProductos : Array = []
 
 #lista de mods en un tipo
 var modsList : Array = []
@@ -31,24 +33,36 @@ func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abr
 
 func initial_query(): #query que trae los datos al godot
 	#consulta ids secciones, nombres y descripciones
-	select_query("productos", "", ["producto_id","nombre","descripcion"])
+	select_query("productos", "", ["producto_id","nombre","descripcion", "img"])
 	dbSectionSize = int(db.query_result.size()) #determina el tamaño de la consulta para futuras referencias
 	for i in dbSectionSize:
 		idsSeccionesProductos.append(int(db.query_result[i]["producto_id"]))
 		seccionesNombres.append(str(db.query_result[i]["nombre"]))
 		seccionesDescripciones.append(str(db.query_result[i]["descripcion"]))
+		#convertir a imagen antes de guardar
+		var image = Image.new()
+		image.load_jpg_from_buffer(db.query_result[i]["img"])
+		var image_texture = ImageTexture.new()
+		image_texture.set_image(image)
+		seccionesImg.append(image_texture)
 
 func products_in_section_query(sectionVarQuery : int): #TODO Limpiar consultas
 	var sectionVar : int = sectionVarQuery
 	var set_condition : String = "producto_id=" + str(sectionVar)
 	
 	#consultas ids de tipos
-	select_query("producto_tipos", set_condition, ["producto_tipo_id","precio_base","tipo_nombre"])
+	select_query("producto_tipos", set_condition, ["producto_tipo_id","precio_base","tipo_nombre", "img"])
 	dbItemSize = int(db.query_result.size()) #sirve para determinar la cantidad de productos en la base de datos
 	for i in dbItemSize:
 		idsProductos.append(int(db.query_result[i]["producto_tipo_id"])) #se ñaden a una lista
 		preciosProductos.append(float(db.query_result[i]["precio_base"]))
 		nombresProductos.append(str(db.query_result[i]["tipo_nombre"]))
+		#convertir a imagen antes de guardar
+		var image = Image.new()
+		image.load_jpg_from_buffer(db.query_result[i]["img"]) #crashea si te sales del indice
+		var image_texture = ImageTexture.new()
+		image_texture.set_image(image)
+		imgsProductos.append(image_texture)
 
 func mods_in_section_query(sectionModsVarQuery : int):
 	var sectionModsVar : int = sectionModsVarQuery
@@ -111,6 +125,7 @@ func clear_section_queries():
 	idsProductos.clear()
 	nombresProductos.clear()
 	preciosProductos.clear()
+	imgsProductos.clear()
 
 func clear_mods_queries():
 	modsList.clear()
@@ -125,3 +140,6 @@ func select_query(table : String, conditions : String, columns : Array): #anade 
 
 func insert_query(table : String, dict : Dictionary):
 	db.insert_row(table, dict)
+	
+func update_query(table : String, conditions : String, dict : Dictionary):
+	db.update_rows(table,conditions,dict)

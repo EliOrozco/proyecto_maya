@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=10 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
 [ext_resource type="Texture2D" uid="uid://b41cmbb21wyep" path="res://texture/logos/Logo Files/Full Lockup/Lockup_Color.png" id="3_wi8ec"]
 [ext_resource type="Script" uid="uid://bvs1ae4u45fqf" path="res://Managers/AnimationComponent.gd" id="4_wi8ec"]
+[ext_resource type="Script" uid="uid://jfjpg0nsw33y" path="res://Managers/imgLoaderManager.gd" id="5_odcd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odcd3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -187,9 +188,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q64hd")
 custom_minimum_size = Vector2(800, 648)
 layout_mode = 2
 size_flags_horizontal = 0
-current_tab = 0
+current_tab = 1
 
 [node name="Ventas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+visible = false
 clip_contents = true
 layout_mode = 2
 metadata/_tab_index = 0
@@ -223,169 +225,107 @@ theme_override_constants/v_separation = 300
 columns = 3
 
 [node name="Consultas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="TabsNuevoModificar" type="TabContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
-[node name="NuevoProducto" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar"]
+[node name="Consola" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="NombreLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
+[node name="Divisor" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Consola"]
 layout_mode = 2
-text = "Buscar por nombre"
+size_flags_horizontal = 3
 
-[node name="Nombre" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
+[node name="Input" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Consola/Divisor"]
 layout_mode = 2
-size_flags_vertical = 0
-placeholder_text = "Nombre"
+text = "Entrada de texto"
 
-[node name="CategoriaLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
+[node name="InputTE" type="TextEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Consola/Divisor"]
+custom_minimum_size = Vector2(750, 200)
 layout_mode = 2
-text = "Categoria"
+placeholder_text = "Entrada de texto"
 
-[node name="Categoria" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
+[node name="Query" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Consola/Divisor"]
 layout_mode = 2
-placeholder_text = "Ingresa la categoria"
-editable = false
+text = "Realizar Consulta"
 
-[node name="TipoLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
+[node name="Output" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Consola/Divisor"]
 layout_mode = 2
-text = "Ingresa el tipo"
+text = "Salida de texto"
 
-[node name="Tipo" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
+[node name="OutputTE2" type="TextEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Consola/Divisor"]
+custom_minimum_size = Vector2(750, 200)
 layout_mode = 2
-placeholder_text = "Ingresa el Tipo"
-editable = false
+placeholder_text = "Salida de texto"
 
-[node name="ModsLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
+[node name="CargadorDeImagenes" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar"]
 layout_mode = 2
-text = "Ingresa los modificadores, separados por comas"
-
-[node name="Mods" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
-layout_mode = 2
-placeholder_text = "Ingresa los mods"
-editable = false
-
-[node name="NuevoProdcutoButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/NuevoProducto"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Crear"
-
-[node name="ModificarExistente" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar"]
-visible = false
-layout_mode = 2
+script = ExtResource("5_odcd3")
 metadata/_tab_index = 1
 
-[node name="IdLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
+[node name="Divisor" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes"]
 layout_mode = 2
-text = "Buscar por id"
+size_flags_horizontal = 3
 
-[node name="Id" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
+[node name="ECheckButton" type="CheckButton" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-size_flags_vertical = 0
-placeholder_text = "Nombre"
+text = "OFF: Productos - ON: Tipos"
 
-[node name="NombreLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
+[node name="IdLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-text = "Buscar por nombre"
+text = "Ingrese el id"
 
-[node name="Nombre" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
+[node name="IdLineEdit" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-size_flags_vertical = 0
-placeholder_text = "Nombre"
+placeholder_text = "ID"
 
-[node name="CategoriaLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
+[node name="SearcIdButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-text = "Categoria"
+text = "Buscar"
 
-[node name="Categoria" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
+[node name="NombreLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-placeholder_text = "Ingresa la categoria"
-editable = false
+text = "Nombre es:"
 
-[node name="GrupoLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
-layout_mode = 2
-text = "Ingresa el grupo"
-
-[node name="Grupo" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
-layout_mode = 2
-placeholder_text = "Ingresa el grupo"
-editable = false
-
-[node name="ModsLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
-layout_mode = 2
-text = "Ingresa los modificadores, separados por comas"
-
-[node name="Mods" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
-layout_mode = 2
-placeholder_text = "Ingresa los mods"
-editable = false
-
-[node name="ModificarProdcutoButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/ModificarExistente"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Buscar y modificar"
-
-[node name="Manejo" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="categoriasDivisor" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
-layout_mode = 2
-text = "CATEGORIAS"
-
-[node name="CategoriasLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
-layout_mode = 2
-text = "Crear nuevo o buscar para modificar"
-
-[node name="Categorias" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
-layout_mode = 2
-placeholder_text = "Buscar por ID"
-
-[node name="NombreLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
-layout_mode = 2
-text = "Nombre"
-
-[node name="Nombre" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
+[node name="NombreLineEdit" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
 editable = false
 
-[node name="BuscarCatButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
+[node name="ImgLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Buscar y/o crear"
+text = "Imagen"
 
-[node name="ProdudctosDivLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
+[node name="ImgLineEdit" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-text = "Productos"
+placeholder_text = "Dirección o nombre"
 
-[node name="ProductosLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
+[node name="ImporterButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-text = "Crear nuevo o buscar para modificar"
+text = "ImportarImagen"
 
-[node name="Productos" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
+[node name="UpdateImgButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
 layout_mode = 2
-placeholder_text = "Buscar por ID"
+text = "Actualizar imagen"
 
-[node name="GrupoLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
-layout_mode = 2
-text = "Nombre"
+[node name="FileDialog" type="FileDialog" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
+title = "Open a File"
+initial_position = 1
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+use_native_dialog = true
 
-[node name="Grupo" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
+[node name="Preview" type="TextureRect" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-editable = false
-
-[node name="BuscarGrupoButton2" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Manejo"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Buscar y/o crear"
+stretch_mode = 2
 
 [node name="Tablero" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
 visible = false
@@ -409,5 +349,10 @@ vertical_alignment = 1
 wait_time = 5.0
 one_shot = true
 
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/EliminarItem" to="." method="_on_eliminar_item_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/SearcIdButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_searc_id_button_pressed"]
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/ImporterButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_importer_button_pressed"]
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/UpdateImgButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_update_img_button_pressed"]
+[connection signal="file_selected" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/FileDialog" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_file_dialog_file_selected"]
 [connection signal="timeout" from="NotifPanel/Timer" to="." method="_on_timer_timeout"]

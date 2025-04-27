@@ -8,11 +8,13 @@ var productId : int
 var productText : String
 var productPrice : float
 var productMods : Array
+var productImg #sigo sin saber que data types es
 
 var productNameLabel : RichTextLabel 
 var productPriceLabel : RichTextLabel
+var productImgSprite : Sprite2D
 
-func init(productBigNameQuery : String,productQueryId : int, productQueryText : String, productQueryBasePrice : float) -> void:
+func init(productBigNameQuery : String,productQueryId : int, productQueryText : String, productQueryBasePrice : float, productImgQuery) -> void:
 	#los atrubutos se asignan antes de ser creados
 	
 	productBigName = productBigNameQuery #esto es porque al parecer los tipos no sabían que producto eran lol
@@ -21,11 +23,14 @@ func init(productBigNameQuery : String,productQueryId : int, productQueryText : 
 	productId = productQueryId
 	productText = productQueryText
 	productPrice = productQueryBasePrice
+	productImg = productImgQuery
 	
 	productNameLabel = $ProductName #declaracion de la tag, no se puede precargar, tiene que ir en el init
 	productNameLabel.text = productText #manda el texto al display del tag
 	productPriceLabel = $ProductBasePrice
 	productPriceLabel.text = str(productPrice)
+	productImgSprite = $ProductImage
+	productImgSprite.texture = productImg
 
 func _on_product_button_pressed() -> void:
 	DbManager.mods_in_section_query(productId)
