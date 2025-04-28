@@ -3,6 +3,7 @@ extends Node
 #precargar recursos
 @onready var itemsButtons = preload("res://Scenes/ItemButton.tscn") #los botones para ser seleccionados, llama al nodo
 @onready var sectionButtons = preload("res://Scenes/SectionButton.tscn")
+@onready var cambioWindow = preload("res://Scenes/cambio.tscn")
 @onready var itemContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
 @onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
 @onready var notifPanel = $NotifPanel
@@ -12,6 +13,7 @@ extends Node
 @onready var ticketFinalPriceLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorTotalCobrar/CobroTicketText
 
 var current_ticket : Array = [] #aqui vas a guardar diccionarios de los items
+var calculated_final_price : float = 0.0
 
 # Se ejecuta una sóla vez
 func _ready() -> void:
@@ -81,7 +83,7 @@ func add_to_list(inputDict : Dictionary):
 	itemList.add_item("($" + str(inputDict["precio_final"]) + ") " + str(inputDict["cantidad"]) + " x " + str(inputDict["nombre_producto"]) + " - " + str(inputDict["nombre"]) + " [" + mods_sin_comillas + "]")
 
 func update_final_price():
-	var calculated_final_price : float = 0.0
+	calculated_final_price = 0.0
 	for i in current_ticket.size():
 		calculated_final_price = calculated_final_price + float(current_ticket[i]["precio_final"])
 	ticketFinalPriceLabel.text = "$" + str(calculated_final_price)
@@ -108,3 +110,9 @@ func _on_eliminar_item_pressed() -> void:
 	itemList.remove_item(selected_item)
 	current_ticket.remove_at(selected_item)
 	update_final_price()
+
+
+func _on_nuevo_ticket_button_pressed() -> void:
+	var cambioWindowInstance = cambioWindow.instantiate()
+	cambioWindowInstance.init(calculated_final_price)
+	add_child(cambioWindowInstance)

@@ -188,10 +188,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q64hd")
 custom_minimum_size = Vector2(800, 648)
 layout_mode = 2
 size_flags_horizontal = 0
-current_tab = 1
+current_tab = 0
 
 [node name="Ventas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
-visible = false
 clip_contents = true
 layout_mode = 2
 metadata/_tab_index = 0
@@ -225,6 +224,7 @@ theme_override_constants/v_separation = 300
 columns = 3
 
 [node name="Consultas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -349,6 +349,7 @@ vertical_alignment = 1
 wait_time = 5.0
 one_shot = true
 
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/NuevoTicketButton" to="." method="_on_nuevo_ticket_button_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/EliminarItem" to="." method="_on_eliminar_item_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/SearcIdButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_searc_id_button_pressed"]
