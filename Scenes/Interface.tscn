@@ -188,9 +188,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q64hd")
 custom_minimum_size = Vector2(800, 648)
 layout_mode = 2
 size_flags_horizontal = 0
-current_tab = 0
+current_tab = 1
 
 [node name="Ventas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+visible = false
 clip_contents = true
 layout_mode = 2
 metadata/_tab_index = 0
@@ -224,7 +225,6 @@ theme_override_constants/v_separation = 300
 columns = 3
 
 [node name="Consultas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

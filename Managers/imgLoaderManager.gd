@@ -61,5 +61,6 @@ func _on_update_img_button_pressed() -> void:
 		"img" : pba
 	}
 	DbManager.update_query(table, query_att, img_dict)
+	DbManager.initial_query()
 	var parent_node = get_tree().root.get_child(1)
 	parent_node.send_msg_to_notif("Actualizado correctamente")

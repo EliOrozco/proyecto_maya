@@ -1,6 +1,6 @@
 extends Control
 
-@onready var CargaInicio : ProgressBar = $ColorInicio/LogoContainer/CargaInicio #referencia a la interfaz a barra de cargA
+@onready var CargaInicio : ProgressBar = $ColorInicio/LogoContainer/LogoBarraCarga/CargaInicio #referencia a la interfaz a barra de cargA
 var cargatotal : int = 0 #VALOR ASIGNADO BARRA DE CARGA 
 @export var paso : int = 25 #cant minima avance de carga
 

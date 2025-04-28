@@ -26,12 +26,11 @@ layout_mode = 2
 [node name="LogoBarraCarga" type="VBoxContainer" parent="ColorInicio/LogoContainer"]
 layout_mode = 2
 
-[node name="Logo" type="Sprite2D" parent="ColorInicio/LogoContainer"]
-position = Vector2(576, 308)
+[node name="Logo" type="Sprite2D" parent="ColorInicio/LogoContainer/LogoBarraCarga"]
+position = Vector2(100, -100)
 texture = ExtResource("1_aup5q")
-offset = Vector2(0, -45.39)
 
-[node name="CargaInicio" type="ProgressBar" parent="ColorInicio/LogoContainer"]
+[node name="CargaInicio" type="ProgressBar" parent="ColorInicio/LogoContainer/LogoBarraCarga"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4

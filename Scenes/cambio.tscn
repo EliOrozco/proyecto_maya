@@ -4,7 +4,7 @@
 
 [node name="Cambio" type="Window"]
 initial_position = 2
-size = Vector2i(600, 400)
+size = Vector2i(600, 830)
 wrap_controls = true
 unresizable = true
 borderless = true
