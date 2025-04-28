@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=9 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
@@ -7,9 +7,6 @@
 [ext_resource type="Script" uid="uid://jfjpg0nsw33y" path="res://Managers/imgLoaderManager.gd" id="5_odcd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odcd3"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wi8ec"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q64hd"]
@@ -148,37 +145,6 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DivisorBotones" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="CancelarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
-layout_mode = 2
-text = "Cancelar"
-
-[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones/CancelarButton"]
-script = ExtResource("4_wi8ec")
-hover_scale = Vector2(1.1, 1.1)
-transition_type = 2
-metadata/_custom_type_script = "uid://bvs1ae4u45fqf"
-
-[node name="PanelContainer" type="PanelContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_wi8ec")
-
-[node name="CobrarButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones"]
-layout_mode = 2
-text = "Cobrar"
-
-[node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorBotones/CobrarButton"]
-script = ExtResource("4_wi8ec")
-hover_scale = Vector2(1.1, 1.1)
-transition_type = 2
-metadata/_custom_type_script = "uid://bvs1ae4u45fqf"
-
 [node name="ColorDeFondoProductos" type="PanelContainer" parent="controladorDeInterfaz/Divisor"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -188,10 +154,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q64hd")
 custom_minimum_size = Vector2(800, 648)
 layout_mode = 2
 size_flags_horizontal = 0
-current_tab = 1
+current_tab = 0
 
 [node name="Ventas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
-visible = false
 clip_contents = true
 layout_mode = 2
 metadata/_tab_index = 0
@@ -225,6 +190,7 @@ theme_override_constants/v_separation = 300
 columns = 3
 
 [node name="Consultas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
