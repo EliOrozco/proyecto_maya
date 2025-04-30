@@ -37,6 +37,7 @@ func load_image():
 	if DbManager.db.query_result[0]["img"] == null:
 		ImgLineEdit.text = "No hay imagen"
 		Preview.texture = null
+		NotifMessage.send("No se ha cargado una imagen")
 	else:
 		ImgLineEdit.text = "Se encontró una imagen"
 		for i in DbManager.db.query_result:
@@ -44,6 +45,7 @@ func load_image():
 			image.load_jpg_from_buffer(i.img)
 			var texture = ImageTexture.create_from_image(image)
 			Preview.texture = texture
+			NotifMessage.send("Imagen cargada de manera correcta")
 
 func _on_importer_button_pressed() -> void:
 	fileDialog.popup()
@@ -62,5 +64,5 @@ func _on_update_img_button_pressed() -> void:
 	}
 	DbManager.update_query(table, query_att, img_dict)
 	DbManager.initial_query()
-	var parent_node = get_tree().root.get_child(1)
+	var parent_node = get_tree().root.get_child(2)
 	parent_node.send_msg_to_notif("Actualizado correctamente")

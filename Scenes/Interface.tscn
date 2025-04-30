@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5o5jnl1b5mp7"]
+[gd_scene load_steps=8 format=3 uid="uid://c5o5jnl1b5mp7"]
 
 [ext_resource type="Script" uid="uid://damed7ywvpbfr" path="res://Managers/interfaceManager.gd" id="1_qvr0x"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
@@ -11,9 +11,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q64hd"]
 bg_color = Color(0.952625, 0.406992, 0.235672, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbk52"]
-bg_color = Color(1, 1, 0, 1)
 
 [node name="Interfaz" type="Node2D"]
 script = ExtResource("1_qvr0x")
@@ -298,23 +295,6 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="NotifPanel" type="PanelContainer" parent="."]
-visible = false
-custom_minimum_size = Vector2(475, 100)
-offset_right = 50.0
-offset_bottom = 50.0
-
-[node name="TextoNotif" type="RichTextLabel" parent="NotifPanel"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_mbk52")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Timer" type="Timer" parent="NotifPanel"]
-wait_time = 5.0
-one_shot = true
-
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/NuevoTicketButton" to="." method="_on_nuevo_ticket_button_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/EliminarItem" to="." method="_on_eliminar_item_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]
@@ -322,4 +302,3 @@ one_shot = true
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/ImporterButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_importer_button_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/UpdateImgButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_update_img_button_pressed"]
 [connection signal="file_selected" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/FileDialog" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_file_dialog_file_selected"]
-[connection signal="timeout" from="NotifPanel/Timer" to="." method="_on_timer_timeout"]

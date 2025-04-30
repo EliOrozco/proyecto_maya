@@ -6,9 +6,6 @@ extends Node
 @onready var cambioWindow = preload("res://Scenes/cambio.tscn")
 @onready var itemContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
 @onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
-@onready var notifPanel = $NotifPanel
-@onready var notifPanelText = $NotifPanel/TextoNotif
-@onready var notifPanelTimer = $NotifPanel/Timer
 @onready var ticketSizeLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/DivisorTicketNumber/TicketNumberLab
 @onready var ticketFinalPriceLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorTotalCobrar/CobroTicketText
 
@@ -88,22 +85,10 @@ func update_final_price():
 		calculated_final_price = calculated_final_price + float(current_ticket[i]["precio_final"])
 	ticketFinalPriceLabel.text = "$" + str(calculated_final_price)
 
-func write_ticket_and_print():
-	pass
-
 func _on_volver_pressed() -> void:
 	clear_children_in_itemContainer()
 	reload_item_sections_buttons()
 	DbManager.clear_section_queries()
-
-func send_msg_to_notif(notiftext : String):
-	notifPanelText.text = notiftext
-	notifPanel.visible = true
-	notifPanelTimer.start()
-
-func _on_timer_timeout() -> void:
-	notifPanelText.text = ""
-	notifPanel.visible = false
 
 func _on_eliminar_item_pressed() -> void:
 	var selected_item = itemList.get_selected_items()[0]
@@ -111,8 +96,7 @@ func _on_eliminar_item_pressed() -> void:
 	current_ticket.remove_at(selected_item)
 	update_final_price()
 
-
 func _on_nuevo_ticket_button_pressed() -> void:
 	var cambioWindowInstance = cambioWindow.instantiate()
-	cambioWindowInstance.init(calculated_final_price)
+	cambioWindowInstance.init(calculated_final_price, current_ticket, ticketSizeLabel.text)
 	add_child(cambioWindowInstance)

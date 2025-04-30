@@ -32,6 +32,11 @@ func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abr
 	initial_query()
 
 func initial_query(): #query que trae los datos al godot
+	#limpiar registros existentes
+	idsSeccionesProductos.clear()
+	seccionesNombres.clear()
+	seccionesDescripciones.clear()
+	seccionesImg.clear()
 	#consulta ids secciones, nombres y descripciones
 	select_query("productos", "", ["producto_id","nombre","descripcion", "img"])
 	dbSectionSize = int(db.query_result.size()) #determina el tamaño de la consulta para futuras referencias

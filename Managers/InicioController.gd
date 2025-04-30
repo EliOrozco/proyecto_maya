@@ -7,6 +7,7 @@ var cargatotal : int = 0 #VALOR ASIGNADO BARRA DE CARGA
 func _ready() -> void: 
 	#get_viewport().size = Vector2i(1280,720)
 	#get_viewport().size = DisplayServer.screen_get_size()
+	NotifMessage.hide()
 	pass
 	
 func _process(_delta: float) -> void: #carga total
