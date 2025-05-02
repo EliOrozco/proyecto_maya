@@ -6,6 +6,9 @@
 initial_position = 1
 size = Vector2i(400, 300)
 wrap_controls = true
+transient = true
+transient_to_focused = true
+exclusive = true
 unresizable = true
 borderless = true
 script = ExtResource("1_dw82e")
@@ -90,15 +93,13 @@ size_flags_horizontal = 4
 
 [node name="ImprimirButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Terminar e imprimir (Enter)"
+text = "Terminar e imprimir (F2)"
 
 [node name="CancelarButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "Cancelar (Esc)"
 
-[connection signal="focus_entered" from="Control/MarginContainer/VBoxContainer/MoneyReceivedInput" to="." method="_on_money_received_input_focus_entered"]
 [connection signal="text_changed" from="Control/MarginContainer/VBoxContainer/MoneyReceivedInput" to="." method="_on_money_received_input_text_changed"]
-[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/MoneyReceivedInput" to="." method="_on_money_received_input_text_submitted"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/bill20" to="." method="_on_bill_20_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/bill50" to="." method="_on_bill_50_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/bill100" to="." method="_on_bill_100_pressed"]

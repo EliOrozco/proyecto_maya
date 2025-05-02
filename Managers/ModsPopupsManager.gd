@@ -22,6 +22,23 @@ func _ready() -> void:
 		var checkBoxReference = optionsContainer.get_child(i)
 		checkBoxReference.text = DbManager.nombreMod
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("escap"):
+		_on_cancelar_button_pressed()
+	if Input.is_action_just_pressed("plussign"):
+		cantidadSelector.value = cantidadSelector.value + 1
+	if Input.is_action_just_pressed("minussign"):
+		cantidadSelector.value = cantidadSelector.value - 1
+	if Input.is_action_just_pressed("f2"):
+		_on_seleccionar_todo_pressed()
+	if Input.is_action_just_pressed("f3"):
+		_on_seleccionar_nada_pressed()
+	if Input.is_action_just_pressed("f4"):
+		_on_aceptar_button_pressed()
+	if Input.is_action_just_pressed("ctrl"):
+		optionsContainer.get_child(0).grab_focus()
+		
+
 func _on_cancelar_button_pressed() -> void:
 	DbManager.clear_mods_queries()
 	DbManager.clear_mod_info()

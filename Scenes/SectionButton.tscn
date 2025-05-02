@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://uifnxfkxdlf8"]
+[gd_scene load_steps=5 format=3 uid="uid://uifnxfkxdlf8"]
 
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_jn16m"]
 [ext_resource type="Script" uid="uid://d1mjv6s065mst" path="res://Managers/sectionButtonManager.gd" id="2_jn16m"]
 [ext_resource type="Texture2D" uid="uid://bbnc31uuc1l5r" path="res://texture/defaults/agua_1l.jpg" id="3_jn16m"]
+[ext_resource type="Texture2D" uid="uid://b4m6iwph17f6t" path="res://texture/defaults/overlay.png" id="4_qhg4r"]
 
 [node name="SectionButton" type="Control"]
 layout_mode = 3
@@ -18,17 +19,20 @@ size_flags_vertical = 8
 theme = ExtResource("1_jn16m")
 script = ExtResource("2_jn16m")
 
-[node name="SectionButton" type="TextureButton" parent="."]
-layout_mode = 1
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 232.0
-offset_bottom = 224.0
-
 [node name="SectionImage" type="Sprite2D" parent="."]
 position = Vector2(130.4, 122.4)
 scale = Vector2(0.459375, 0.459375)
 texture = ExtResource("3_jn16m")
+
+[node name="SectionButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 13.0
+offset_top = 5.0
+offset_right = 248.0
+offset_bottom = 240.0
+texture_focused = ExtResource("4_qhg4r")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="SectionName" type="RichTextLabel" parent="."]
 layout_mode = 2

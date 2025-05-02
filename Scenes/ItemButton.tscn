@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmvs7vspfibd6"]
+[gd_scene load_steps=5 format=3 uid="uid://bmvs7vspfibd6"]
 
 [ext_resource type="Script" uid="uid://brmayyp5ovsbp" path="res://Managers/itemButtonManager.gd" id="1_csceu"]
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="1_otroy"]
 [ext_resource type="Texture2D" uid="uid://bbnc31uuc1l5r" path="res://texture/defaults/agua_1l.jpg" id="3_0748q"]
+[ext_resource type="Texture2D" uid="uid://b4m6iwph17f6t" path="res://texture/defaults/overlay.png" id="4_tfkbb"]
 
 [node name="ItemButton" type="Control"]
 layout_mode = 3
@@ -18,17 +19,20 @@ size_flags_vertical = 8
 theme = ExtResource("1_otroy")
 script = ExtResource("1_csceu")
 
-[node name="ProductButton" type="TextureButton" parent="."]
-layout_mode = 1
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 232.0
-offset_bottom = 224.0
-
 [node name="ProductImage" type="Sprite2D" parent="."]
 position = Vector2(128, 128)
 scale = Vector2(0.46875, 0.46875)
 texture = ExtResource("3_0748q")
+
+[node name="ProductButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 248.0
+offset_bottom = 248.0
+texture_focused = ExtResource("4_tfkbb")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="ProductName" type="RichTextLabel" parent="."]
 layout_mode = 2

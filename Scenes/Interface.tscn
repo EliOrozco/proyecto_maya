@@ -160,7 +160,7 @@ metadata/_tab_index = 0
 
 [node name="Buscador" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
-placeholder_text = "Ingrese el nombre o código del producto (Enter)"
+placeholder_text = "Ingrese el nombre (F10)"
 max_length = 50
 emoji_menu_enabled = false
 clear_button_enabled = true
@@ -170,7 +170,7 @@ select_all_on_focus = true
 
 [node name="Volver" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
-text = "Volver (Borrar)"
+text = "Volver (F12)"
 
 [node name="Scroller" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
@@ -297,6 +297,7 @@ metadata/_tab_index = 2
 
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/NuevoTicketButton" to="." method="_on_nuevo_ticket_button_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/EliminarItem" to="." method="_on_eliminar_item_pressed"]
+[connection signal="text_changed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Buscador" to="." method="_on_buscador_text_changed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/SearcIdButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_searc_id_button_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes/Divisor/ImporterButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/CargadorDeImagenes" method="_on_importer_button_pressed"]

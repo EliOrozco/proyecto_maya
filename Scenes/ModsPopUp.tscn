@@ -69,7 +69,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PopUP/ColorDeFondo/ContenedotV/DivisorCantidad"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cantidad:"
+text = "Cantidad: ( + / - )"
 horizontal_alignment = 1
 
 [node name="Cantidad" type="SpinBox" parent="PopUP/ColorDeFondo/ContenedotV/DivisorCantidad"]
@@ -79,6 +79,7 @@ min_value = 1.0
 value = 1.0
 alignment = 1
 custom_arrow_step = 1.0
+select_all_on_focus = true
 
 [node name="DivisorSelectores" type="HBoxContainer" parent="PopUP/ColorDeFondo/ContenedotV"]
 layout_mode = 2
@@ -87,13 +88,13 @@ size_flags_vertical = 4
 [node name="SeleccionarNada" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Quitar Too"
+text = "Quitar Too (F3)"
 
 [node name="SeleccionarTodo" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-text = "Añadir Todo"
+text = "Añadir Todo (F2)"
 
 [node name="DivisorBotones" type="HBoxContainer" parent="PopUP/ColorDeFondo/ContenedotV"]
 layout_mode = 2
@@ -102,12 +103,12 @@ size_flags_vertical = 4
 [node name="CancelarButton" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorBotones"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cancelar "
+text = "Cancelar (ESC)"
 
 [node name="AceptarButton" type="Button" parent="PopUP/ColorDeFondo/ContenedotV/DivisorBotones"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Aceptar"
+text = "Aceptar (F4)"
 
 [connection signal="pressed" from="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores/SeleccionarNada" to="." method="_on_seleccionar_nada_pressed"]
 [connection signal="pressed" from="PopUP/ColorDeFondo/ContenedotV/DivisorSelectores/SeleccionarTodo" to="." method="_on_seleccionar_todo_pressed"]

@@ -14,6 +14,8 @@ var productNameLabel : RichTextLabel
 var productPriceLabel : RichTextLabel
 var productImgSprite : Sprite2D
 
+var indexName : String
+
 func init(productBigNameQuery : String,productQueryId : int, productQueryText : String, productQueryBasePrice : float, productImgQuery) -> void:
 	#los atrubutos se asignan antes de ser creados
 	
@@ -22,6 +24,7 @@ func init(productBigNameQuery : String,productQueryId : int, productQueryText : 
 	#se deben añadir parametros para mandar al popup y la imagen
 	productId = productQueryId
 	productText = productQueryText
+	indexName = productQueryText.to_lower()
 	productPrice = productQueryBasePrice
 	productImg = productImgQuery
 	

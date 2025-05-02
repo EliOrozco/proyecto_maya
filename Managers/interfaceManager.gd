@@ -21,12 +21,19 @@ func _ready() -> void:
 # Se ejecuta cada frame, reducir funciones que van aquí
 func _process(_delta: float) -> void:
 	ticketSizeLabel.text = "#" + str(DbManager.get_last_created_ticket() + 1) #sacar de aqui, no debe ejecutarse cada frame
-	if Input.is_action_pressed("cobrar"):
+	if Input.is_action_just_pressed("f1"):
 		_on_nuevo_ticket_button_pressed()
-	if Input.is_action_just_pressed("atras"):
+	if Input.is_action_just_pressed("f12"):
 		_on_volver_pressed()
-	if Input.is_action_just_pressed("enter"):
+	if Input.is_action_just_pressed("f10"):
 		buscador.grab_focus()
+	if Input.is_action_just_pressed("ctrl"):
+		#necesita seleccionar sólo si es visivle
+		var children = itemContainer.get_children()
+		for child in children:
+			if child.visible == true:
+				itemContainer.get_child(child.get_index()).get_child(1).grab_focus()
+				return
 	pass
 
 func clear_children_in_itemContainer():
@@ -96,10 +103,13 @@ func _on_volver_pressed() -> void:
 	DbManager.clear_section_queries()
 
 func _on_eliminar_item_pressed() -> void:
-	var selected_item = itemList.get_selected_items()[0]
-	itemList.remove_item(selected_item)
-	current_ticket.remove_at(selected_item)
-	update_final_price()
+	if itemList.is_anything_selected():
+		var selected_item = itemList.get_selected_items()[0]
+		itemList.remove_item(selected_item)
+		current_ticket.remove_at(selected_item)
+		update_final_price()
+	else:
+		NotifMessage.send("No hay nada seleccionado")
 
 func _on_nuevo_ticket_button_pressed() -> void:
 	if current_ticket.is_empty():
@@ -111,8 +121,23 @@ func _on_nuevo_ticket_button_pressed() -> void:
 		cambioWindowInstance.clear_ticket_signal.connect(clear_ticket)
 
 func clear_ticket():
+	buscador.grab_focus()
 	itemList.clear()
 	current_ticket.clear()
 	clear_children_in_itemContainer()
 	reload_item_sections_buttons()
 	update_final_price()
+
+func _on_buscador_text_changed(new_text: String) -> void:
+	if new_text != "": #el buscador tiene texto
+		new_text = new_text.to_lower()
+		var children = itemContainer.get_children()
+		for child in children:
+			if child.indexName.contains(new_text):
+				child.visible = true
+			else:
+				child.visible = false
+	else: #el buscador esta vacio
+		var children = itemContainer.get_children()
+		for child in children:
+			child.visible = true
