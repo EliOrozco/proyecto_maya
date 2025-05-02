@@ -10,7 +10,6 @@ var moneyChange : float
 
 var calculatedFinalPrice : float
 var currentTicket : Array
-var currentTicketJson : Array
 var ticketNumber : int
 
 func init(calculatedFinalPriceLabelQuery : float, currentTicketQuery : Array, ticketNumberQuery : int) -> void:
@@ -22,6 +21,15 @@ func init(calculatedFinalPriceLabelQuery : float, currentTicketQuery : Array, ti
 	currentTicket = currentTicketQuery
 	moneyReceived.text = str(calculatedFinalPrice)
 	ticketNumber = ticketNumberQuery
+	update_change_money()
+
+func _ready() -> void:
+	await get_tree().process_frame
+	moneyReceived.grab_focus()
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("escap"):
+		_on_cancelar_button_pressed()
 
 func _on_bill_20_pressed() -> void:
 	moneyReceived.text = "20"
@@ -54,15 +62,9 @@ func update_change_money():
 	moneyChange = money - calculatedFinalPrice
 	moneyChangeLabel.text = "$" + str(moneyChange)
 
-func change_to_dict_to_json():
-	for i in currentTicket.size():
-		var helper = JSON.stringify(currentTicket[i])
-		currentTicketJson.append(helper)
-
 func _on_imprimir_button_pressed() -> void:
-	change_to_dict_to_json()
 	PrinterManager.ticket_number = ticketNumber
-	PrinterManager.ticket_list = currentTicketJson
+	PrinterManager.ticket_list = currentTicket #cambiar por currentTicketJson
 	PrinterManager.ticket_total = calculatedFinalPrice
 	PrinterManager.money_received = moneyReceived.text
 	PrinterManager.money_change = moneyChange
@@ -70,4 +72,10 @@ func _on_imprimir_button_pressed() -> void:
 	NotifMessage.send("Imprimendo Ticket...")
 	clear_ticket_signal.emit()
 	queue_free()
-	
+
+func _on_money_received_input_focus_entered() -> void:
+	#moneyReceived.text = ""
+	pass
+
+func _on_money_received_input_text_submitted(new_text: String) -> void:
+	_on_imprimir_button_pressed()

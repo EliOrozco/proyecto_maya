@@ -63,7 +63,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-text = "Terminar e Imprimir"
+text = "Terminar e Imprimir (F1)"
 
 [node name="AnimationComponent" type="Node" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/NuevoTicketButton"]
 script = ExtResource("4_wi8ec")
@@ -160,7 +160,7 @@ metadata/_tab_index = 0
 
 [node name="Buscador" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
-placeholder_text = "Ingrese el nombre o código del producto"
+placeholder_text = "Ingrese el nombre o código del producto (Enter)"
 max_length = 50
 emoji_menu_enabled = false
 clear_button_enabled = true
@@ -170,7 +170,7 @@ select_all_on_focus = true
 
 [node name="Volver" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2
-text = "Volver"
+text = "Volver (Borrar)"
 
 [node name="Scroller" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas"]
 layout_mode = 2

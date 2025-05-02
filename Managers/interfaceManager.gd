@@ -4,6 +4,7 @@ extends Node
 @onready var itemsButtons = preload("res://Scenes/ItemButton.tscn") #los botones para ser seleccionados, llama al nodo
 @onready var sectionButtons = preload("res://Scenes/SectionButton.tscn")
 @onready var cambioWindow = preload("res://Scenes/cambio.tscn")
+@onready var buscador = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Buscador
 @onready var itemContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
 @onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
 @onready var ticketSizeLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/DivisorTicketNumber/TicketNumberLab
@@ -20,6 +21,12 @@ func _ready() -> void:
 # Se ejecuta cada frame, reducir funciones que van aquí
 func _process(_delta: float) -> void:
 	ticketSizeLabel.text = "#" + str(DbManager.get_last_created_ticket() + 1) #sacar de aqui, no debe ejecutarse cada frame
+	if Input.is_action_pressed("cobrar"):
+		_on_nuevo_ticket_button_pressed()
+	if Input.is_action_just_pressed("atras"):
+		_on_volver_pressed()
+	if Input.is_action_just_pressed("enter"):
+		buscador.grab_focus()
 	pass
 
 func clear_children_in_itemContainer():
@@ -48,7 +55,8 @@ func reload_item_types_buttons(section): #aqui deberia haber codigo para limpiar
 		
 		itemButtonInstance.sendOptionsSelected.connect(create_item_in_ticket)
 
-func create_item_in_ticket(productBigName, productId, productText, _optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice):
+func create_item_in_ticket(productBigName, _productId, productText, _optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice):
+	buscador.text = ""
 	var modsFinalPrices : float = 0.0
 	
 	for i in optionsSelectedPrices.size():
@@ -57,15 +65,12 @@ func create_item_in_ticket(productBigName, productId, productText, _optionsSelec
 	var productFinalPrice = cantidadSelected * (productPrice + modsFinalPrices)
 	
 	var item = { #se crea un diccionario para guardar todo
-		"id_producto" : productId,
+		"producto" : productBigName,
+		"tipo" : productText,
 		"cantidad" : cantidadSelected,
-		"nombre_producto" : productBigName,
-		"nombre" : productText,
-		#"modificadores_ids" : optionsSelected,
-		"modificadores_nombres" : optionsSelectedNames,
-		#"modificadores_precios" : optionsSelectedPrices,
-		"precio_sin_modificadores" : productPrice,
-		"precio_final" : productFinalPrice
+		"modificadores" : optionsSelectedNames,
+		"subtotal" : productPrice,
+		"total" : productFinalPrice
 	}
 	current_ticket.append(item)
 	
@@ -74,15 +79,15 @@ func create_item_in_ticket(productBigName, productId, productText, _optionsSelec
 
 func add_to_list(inputDict : Dictionary):
 	var mods_sin_comillas : String = ""
-	for i in inputDict["modificadores_nombres"].size():
-		mods_sin_comillas = mods_sin_comillas + str(inputDict["modificadores_nombres"][i]) + ", "
+	for i in inputDict["modificadores"].size():
+		mods_sin_comillas = mods_sin_comillas + str(inputDict["modificadores"][i]) + ", "
 
-	itemList.add_item("($" + str(inputDict["precio_final"]) + ") " + str(inputDict["cantidad"]) + " x " + str(inputDict["nombre_producto"]) + " - " + str(inputDict["nombre"]) + " [" + mods_sin_comillas + "]")
+	itemList.add_item("($" + str(inputDict["total"]) + ") " + str(inputDict["cantidad"]) + " x " + str(inputDict["producto"]) + " - " + str(inputDict["tipo"]) + " [" + mods_sin_comillas + "]")
 
 func update_final_price():
 	calculated_final_price = 0.0
 	for i in current_ticket.size():
-		calculated_final_price = calculated_final_price + float(current_ticket[i]["precio_final"])
+		calculated_final_price = calculated_final_price + float(current_ticket[i]["total"])
 	ticketFinalPriceLabel.text = "$" + str(calculated_final_price)
 
 func _on_volver_pressed() -> void:
@@ -97,12 +102,17 @@ func _on_eliminar_item_pressed() -> void:
 	update_final_price()
 
 func _on_nuevo_ticket_button_pressed() -> void:
-	var cambioWindowInstance = cambioWindow.instantiate()
-	cambioWindowInstance.init(calculated_final_price, current_ticket, int(ticketSizeLabel.text))
-	add_child(cambioWindowInstance)
-	#cambioWindowInstance.clear_ticket.connect(clear_ticket_signal)
+	if current_ticket.is_empty():
+		NotifMessage.send("No se puede crear un ticket vacio")
+	else:
+		var cambioWindowInstance = cambioWindow.instantiate()
+		cambioWindowInstance.init(calculated_final_price, current_ticket, int(ticketSizeLabel.text))
+		add_child(cambioWindowInstance)
+		cambioWindowInstance.clear_ticket_signal.connect(clear_ticket)
 
 func clear_ticket():
 	itemList.clear()
 	current_ticket.clear()
+	clear_children_in_itemContainer()
+	reload_item_sections_buttons()
 	update_final_price()

@@ -38,10 +38,12 @@ horizontal_alignment = 1
 layout_mode = 2
 placeholder_text = "Ingresa la cantidad recibida"
 alignment = 1
+max_length = 10
 context_menu_enabled = false
 emoji_menu_enabled = false
 virtual_keyboard_type = 2
 clear_button_enabled = true
+select_all_on_focus = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -88,13 +90,15 @@ size_flags_horizontal = 4
 
 [node name="ImprimirButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Terminar e imprimir"
+text = "Terminar e imprimir (Enter)"
 
 [node name="CancelarButton" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Cancelar"
+text = "Cancelar (Esc)"
 
+[connection signal="focus_entered" from="Control/MarginContainer/VBoxContainer/MoneyReceivedInput" to="." method="_on_money_received_input_focus_entered"]
 [connection signal="text_changed" from="Control/MarginContainer/VBoxContainer/MoneyReceivedInput" to="." method="_on_money_received_input_text_changed"]
+[connection signal="text_submitted" from="Control/MarginContainer/VBoxContainer/MoneyReceivedInput" to="." method="_on_money_received_input_text_submitted"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/bill20" to="." method="_on_bill_20_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/bill50" to="." method="_on_bill_50_pressed"]
 [connection signal="pressed" from="Control/MarginContainer/VBoxContainer/HBoxContainer/bill100" to="." method="_on_bill_100_pressed"]
