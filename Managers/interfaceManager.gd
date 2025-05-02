@@ -48,7 +48,7 @@ func reload_item_types_buttons(section): #aqui deberia haber codigo para limpiar
 		
 		itemButtonInstance.sendOptionsSelected.connect(create_item_in_ticket)
 
-func create_item_in_ticket(productBigName, productId, productText, optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice):
+func create_item_in_ticket(productBigName, productId, productText, _optionsSelected, optionsSelectedNames, optionsSelectedPrices,cantidadSelected, productPrice):
 	var modsFinalPrices : float = 0.0
 	
 	for i in optionsSelectedPrices.size():
@@ -61,9 +61,9 @@ func create_item_in_ticket(productBigName, productId, productText, optionsSelect
 		"cantidad" : cantidadSelected,
 		"nombre_producto" : productBigName,
 		"nombre" : productText,
-		"modificadores_ids" : optionsSelected,
+		#"modificadores_ids" : optionsSelected,
 		"modificadores_nombres" : optionsSelectedNames,
-		"modificadores_precios" : optionsSelectedPrices,
+		#"modificadores_precios" : optionsSelectedPrices,
 		"precio_sin_modificadores" : productPrice,
 		"precio_final" : productFinalPrice
 	}
@@ -98,5 +98,11 @@ func _on_eliminar_item_pressed() -> void:
 
 func _on_nuevo_ticket_button_pressed() -> void:
 	var cambioWindowInstance = cambioWindow.instantiate()
-	cambioWindowInstance.init(calculated_final_price, current_ticket, ticketSizeLabel.text)
+	cambioWindowInstance.init(calculated_final_price, current_ticket, int(ticketSizeLabel.text))
 	add_child(cambioWindowInstance)
+	#cambioWindowInstance.clear_ticket.connect(clear_ticket_signal)
+
+func clear_ticket():
+	itemList.clear()
+	current_ticket.clear()
+	update_final_price()

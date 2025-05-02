@@ -1,5 +1,7 @@
 extends Window
 
+signal clear_ticket_signal
+
 var calculatedFinalPriceLabel : RichTextLabel
 var moneyReceived : LineEdit
 var moneyChangeLabel : Label
@@ -8,9 +10,10 @@ var moneyChange : float
 
 var calculatedFinalPrice : float
 var currentTicket : Array
-var ticketNumber : String
+var currentTicketJson : Array
+var ticketNumber : int
 
-func init(calculatedFinalPriceLabelQuery : float, currentTicketQuery : Array, ticketNumberQuery : String) -> void:
+func init(calculatedFinalPriceLabelQuery : float, currentTicketQuery : Array, ticketNumberQuery : int) -> void:
 	calculatedFinalPriceLabel = $Control/MarginContainer/VBoxContainer/calculatedFinalPriceLabel
 	moneyReceived = $Control/MarginContainer/VBoxContainer/MoneyReceivedInput
 	moneyChangeLabel = $Control/MarginContainer/VBoxContainer/MoneyToGiveLabel
@@ -51,13 +54,20 @@ func update_change_money():
 	moneyChange = money - calculatedFinalPrice
 	moneyChangeLabel.text = "$" + str(moneyChange)
 
+func change_to_dict_to_json():
+	for i in currentTicket.size():
+		var helper = JSON.stringify(currentTicket[i])
+		currentTicketJson.append(helper)
+
 func _on_imprimir_button_pressed() -> void:
+	change_to_dict_to_json()
 	PrinterManager.ticket_number = ticketNumber
-	PrinterManager.ticket_list = currentTicket
+	PrinterManager.ticket_list = currentTicketJson
 	PrinterManager.ticket_total = calculatedFinalPrice
 	PrinterManager.money_received = moneyReceived.text
 	PrinterManager.money_change = moneyChange
 	PrinterManager.ConectToPrinter()
 	NotifMessage.send("Imprimendo Ticket...")
+	clear_ticket_signal.emit()
 	queue_free()
 	
