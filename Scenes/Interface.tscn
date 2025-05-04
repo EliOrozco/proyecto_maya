@@ -115,6 +115,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_odcd3")
 [node name="Ticket" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2"]
 custom_minimum_size = Vector2(0, 0.54)
 layout_mode = 2
+mouse_filter = 1
 theme_override_font_sizes/font_size = 20
 
 [node name="DivisorTotalCobrar" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo"]
@@ -179,12 +180,9 @@ size_flags_vertical = 3
 follow_focus = true
 
 [node name="Grid" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller"]
-clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 260
-theme_override_constants/v_separation = 300
 columns = 3
 
 [node name="Consultas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
@@ -237,9 +235,12 @@ custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 auto_height = true
+text_overrun_behavior = 0
 
 [node name="Atributos" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -299,7 +300,14 @@ select_all_on_focus = true
 
 [node name="ImgLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
 layout_mode = 2
-text = "Imagen"
+text = "Imagen (Usa imagenes de 512 x 512)"
+
+[node name="Preview" type="TextureRect" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+expand_mode = 5
 
 [node name="ImporterButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
 layout_mode = 2
@@ -310,11 +318,6 @@ text = "ImportarImagen"
 layout_mode = 2
 disabled = true
 text = "Realizar Cambios"
-
-[node name="Preview" type="TextureRect" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-stretch_mode = 2
 
 [node name="FileDialog" type="FileDialog" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
 title = "Open a File"
@@ -341,4 +344,6 @@ metadata/_tab_index = 2
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/LookupButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_lookup_button_pressed"]
 [connection signal="item_selected" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer/ItemList" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_item_list_item_selected"]
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos/ImporterButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_importer_button_pressed"]
+[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos/UpdateButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_update_button_pressed"]
 [connection signal="file_selected" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos/FileDialog" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_file_dialog_file_selected"]

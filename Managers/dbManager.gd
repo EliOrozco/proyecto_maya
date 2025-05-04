@@ -5,21 +5,16 @@ var dbItemSize : int = 0
 var dbSectionSize : int = 0
 
 #secciones
-var idsSeccionesProductos : Array = []
-var seccionesNombres : Array = []
-var seccionesDescripciones : Array = []
-var seccionesImg : Array = []
+var sectionList : Array = []
 
 #tipos de prodctos
-var idsProductos : Array = []
-var nombresProductos : Array = []
-var preciosProductos : Array = []
-var imgsProductos : Array = []
-var todosLosProductos : Array = []
+var productList : Array = []
+var allProductList : Array = []
 
 #lista de mods en un tipo
 var modsList : Array = []
-var todosLosMods : Array = []
+
+var allModsList : Array = []
 
 #info de los mods
 var idMod : int
@@ -35,25 +30,16 @@ func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abr
 
 func initial_query(): #query que trae los datos al godot
 	#limpiar registros existentes
-	idsSeccionesProductos.clear()
-	seccionesNombres.clear()
-	seccionesDescripciones.clear()
-	seccionesImg.clear()
+	sectionList.clear()
 	#consulta ids secciones, nombres y descripciones
 	select_query("productos", "", ["producto_id","nombre","descripcion", "img"])
 	dbSectionSize = int(db.query_result.size()) #determina el tamaño de la consulta para futuras referencias
 	for i in dbSectionSize:
-		idsSeccionesProductos.append(int(db.query_result[i]["producto_id"]))
-		seccionesNombres.append(str(db.query_result[i]["nombre"]))
-		seccionesDescripciones.append(str(db.query_result[i]["descripcion"]))
-		#convertir a imagen antes de guardar
-		var image = Image.new()
-		image.load_jpg_from_buffer(db.query_result[i]["img"])
-		var image_texture = ImageTexture.new()
-		image_texture.set_image(image)
-		seccionesImg.append(image_texture)
+		sectionList.append(db.query_result[i])
 
 func products_in_section_query(sectionVarQuery : int):
+	productList.clear()
+	
 	var sectionVar : int = sectionVarQuery
 	var set_condition : String = "producto_id=" + str(sectionVar)
 	
@@ -61,27 +47,19 @@ func products_in_section_query(sectionVarQuery : int):
 	select_query("producto_tipos", set_condition, ["producto_tipo_id","precio_base","tipo_nombre", "img"])
 	dbItemSize = int(db.query_result.size()) #sirve para determinar la cantidad de productos en la base de datos
 	for i in dbItemSize:
-		idsProductos.append(int(db.query_result[i]["producto_tipo_id"])) #se ñaden a una lista
-		preciosProductos.append(float(db.query_result[i]["precio_base"]))
-		nombresProductos.append(str(db.query_result[i]["tipo_nombre"]))
-		#convertir a imagen antes de guardar
-		var image = Image.new()
-		image.load_jpg_from_buffer(db.query_result[i]["img"]) #crashea si te sales del indice
-		var image_texture = ImageTexture.new()
-		image_texture.set_image(image)
-		imgsProductos.append(image_texture)
+		productList.append(db.query_result[i])
 
 func query_all_products():
-	todosLosProductos.clear()
+	allProductList.clear()
 	db.query("SELECT t.producto_tipo_id, t.producto_id, p.nombre, t.tipo_nombre, t.precio_base, t.img FROM producto_tipos t LEFT JOIN productos p ON t.producto_id = p.producto_id;")
 	for i in db.query_result.size():
-		todosLosProductos.append(db.query_result[i])
+		allProductList.append(db.query_result[i])
 
 func query_all_mods():
-	todosLosMods.clear()
+	allModsList.clear()
 	select_query("modificadores", "", ["modificador_id", "nombre", "ajuste_precio"])
 	for i in db.query_result.size():
-		todosLosMods.append(db.query_result[i])
+		allModsList.append(db.query_result[i])
 	
 func mods_in_section_query(sectionModsVarQuery : int):
 	var sectionModsVar : int = sectionModsVarQuery
@@ -141,10 +119,7 @@ func get_last_created_ticket_item() -> int:
 	return int(db.query_result[0]["ticket_item_id"])
 
 func clear_section_queries():
-	idsProductos.clear()
-	nombresProductos.clear()
-	preciosProductos.clear()
-	imgsProductos.clear()
+	productList.clear()
 
 func clear_mods_queries():
 	modsList.clear()

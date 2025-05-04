@@ -16,17 +16,16 @@ var productImgSprite : Sprite2D
 
 var indexName : String
 
-func init(productBigNameQuery : String,productQueryId : int, productQueryText : String, productQueryBasePrice : float, productImgQuery) -> void:
+func init(productBigNameQuery : String, inputDict : Dictionary) -> void:
 	#los atrubutos se asignan antes de ser creados
-	
 	productBigName = productBigNameQuery #esto es porque al parecer los tipos no sabían que producto eran lol
 	
 	#se deben añadir parametros para mandar al popup y la imagen
-	productId = productQueryId
-	productText = productQueryText
-	indexName = productQueryText.to_lower()
-	productPrice = productQueryBasePrice
-	productImg = productImgQuery
+	productId = inputDict["producto_tipo_id"]
+	productText = inputDict["tipo_nombre"]
+	indexName = productText.to_lower()
+	productPrice = inputDict["precio_base"]
+	productImg = load_image(inputDict["img"])
 	
 	productNameLabel = $ProductName #declaracion de la tag, no se puede precargar, tiene que ir en el init
 	productNameLabel.text = productText #manda el texto al display del tag
@@ -46,3 +45,12 @@ func send_options_selected_upward(optionsSelected, optionsSelectedNames, options
 
 func aplicar_button_has_been_pressed():
 	pass
+
+func load_image(bytearray):
+	if bytearray == null:
+		NotifMessage.send(productText + " no tiene imagen")
+	else:
+		var image = Image.new()
+		image.load_jpg_from_buffer(bytearray)
+		var texture = ImageTexture.create_from_image(image)
+		return texture

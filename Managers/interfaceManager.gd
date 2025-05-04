@@ -5,6 +5,7 @@ extends Node
 @onready var sectionButtons = preload("res://Scenes/SectionButton.tscn")
 @onready var cambioWindow = preload("res://Scenes/cambio.tscn")
 @onready var buscador = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Buscador
+@onready var scrollContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer
 @onready var itemContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
 @onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
 @onready var ticketSizeLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/DivisorTicketNumber/TicketNumberLab
@@ -45,7 +46,7 @@ func reload_item_sections_buttons():
 	for i in DbManager.dbSectionSize: #creará un botón por cada sección
 		var sectionInstance = sectionButtons.instantiate() #crear una instancia 
 		#anade las porpiedades del obeto antes de ser creado 
-		sectionInstance.init(DbManager.idsSeccionesProductos[i], DbManager.seccionesNombres[i], DbManager.seccionesDescripciones[i], DbManager.seccionesImg[i])
+		sectionInstance.init(DbManager.sectionList[i])
 		itemContainer.add_child(sectionInstance) #anade el btpn como un child al menu
 		
 		#este es el conector al signal del children cuando el botón es presionado
@@ -54,10 +55,11 @@ func reload_item_sections_buttons():
 
 func reload_item_types_buttons(section): #aqui deberia haber codigo para limpiar todos los childs nodes
 	DbManager.products_in_section_query(section)
+	scrollContainer.scroll_vertical = 0
 	for i in DbManager.dbItemSize: #creara un item por cada id que se haya registrado
 		var itemButtonInstance = itemsButtons.instantiate() #crear una instancia 
 		#anade las porpiedades del obeto antes de ser creado 
-		itemButtonInstance.init(DbManager.seccionesNombres[section-1], DbManager.idsProductos[i], DbManager.nombresProductos[i], DbManager.preciosProductos[i], DbManager.imgsProductos[i])
+		itemButtonInstance.init(DbManager.sectionList[section-1]["nombre"], DbManager.productList[i])
 		itemContainer.add_child(itemButtonInstance) #anade el btpn como un child al menu
 		
 		itemButtonInstance.sendOptionsSelected.connect(create_item_in_ticket)

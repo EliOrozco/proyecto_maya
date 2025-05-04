@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b4m6iwph17f6t" path="res://texture/defaults/overlay.png" id="4_qhg4r"]
 
 [node name="SectionButton" type="Control"]
+custom_minimum_size = Vector2(256, 296)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +17,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme = ExtResource("1_jn16m")
 script = ExtResource("2_jn16m")
 
@@ -30,6 +33,7 @@ offset_left = 13.0
 offset_top = 5.0
 offset_right = 248.0
 offset_bottom = 240.0
+mouse_filter = 1
 texture_focused = ExtResource("4_qhg4r")
 ignore_texture_size = true
 stretch_mode = 0

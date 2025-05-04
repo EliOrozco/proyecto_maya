@@ -6,16 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://b4m6iwph17f6t" path="res://texture/defaults/overlay.png" id="4_tfkbb"]
 
 [node name="ItemButton" type="Control"]
+custom_minimum_size = Vector2(256, 296)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -984.0
-offset_bottom = -353.0
+offset_right = -1024.0
+offset_bottom = -424.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
 theme = ExtResource("1_otroy")
 script = ExtResource("1_csceu")
 
@@ -30,6 +33,8 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 248.0
 offset_bottom = 248.0
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
 texture_focused = ExtResource("4_tfkbb")
 ignore_texture_size = true
 stretch_mode = 0
