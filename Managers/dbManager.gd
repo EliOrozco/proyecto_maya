@@ -15,9 +15,11 @@ var idsProductos : Array = []
 var nombresProductos : Array = []
 var preciosProductos : Array = []
 var imgsProductos : Array = []
+var todosLosProductos : Array = []
 
 #lista de mods en un tipo
 var modsList : Array = []
+var todosLosMods : Array = []
 
 #info de los mods
 var idMod : int
@@ -51,7 +53,7 @@ func initial_query(): #query que trae los datos al godot
 		image_texture.set_image(image)
 		seccionesImg.append(image_texture)
 
-func products_in_section_query(sectionVarQuery : int): #TODO Limpiar consultas
+func products_in_section_query(sectionVarQuery : int):
 	var sectionVar : int = sectionVarQuery
 	var set_condition : String = "producto_id=" + str(sectionVar)
 	
@@ -69,6 +71,18 @@ func products_in_section_query(sectionVarQuery : int): #TODO Limpiar consultas
 		image_texture.set_image(image)
 		imgsProductos.append(image_texture)
 
+func query_all_products():
+	todosLosProductos.clear()
+	db.query("SELECT t.producto_tipo_id, t.producto_id, p.nombre, t.tipo_nombre, t.precio_base, t.img FROM producto_tipos t LEFT JOIN productos p ON t.producto_id = p.producto_id;")
+	for i in db.query_result.size():
+		todosLosProductos.append(db.query_result[i])
+
+func query_all_mods():
+	todosLosMods.clear()
+	select_query("modificadores", "", ["modificador_id", "nombre", "ajuste_precio"])
+	for i in db.query_result.size():
+		todosLosMods.append(db.query_result[i])
+	
 func mods_in_section_query(sectionModsVarQuery : int):
 	var sectionModsVar : int = sectionModsVarQuery
 	var set_condition : String = "producto_tipo_id=" + str(sectionModsVar)

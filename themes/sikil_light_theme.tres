@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://dcmf725vhn78r"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://dcmf725vhn78r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahkwg"]
 content_margin_left = 2.0
@@ -65,6 +65,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mwp6t"]
+bg_color = Color(0.964706, 0.827451, 0.466667, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jvgb"]
 bg_color = Color(0.2, 0.458824, 0.596078, 1)
 
@@ -79,6 +82,12 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6msc1"]
+bg_color = Color(0.653298, 0.523981, 0.15184, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6cld"]
+bg_color = Color(0.900153, 0.738534, 0.282938, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yflx7"]
 bg_color = Color(0.964706, 0.921569, 0.905882, 1)
@@ -112,6 +121,7 @@ Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.172549, 0.172549, 0.172549, 1)
 Button/colors/font_hover_color = Color(0.2, 0.458824, 0.596078, 1)
 Button/colors/font_hover_pressed_color = Color(0.2, 0.458824, 0.596078, 1)
+Button/constants/align_to_largest_stylebox = 1
 Button/font_sizes/font_size = 19
 Button/styles/disabled = null
 Button/styles/focus = null
@@ -149,8 +159,11 @@ LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.6)
 LineEdit/styles/focus = SubResource("StyleBoxFlat_ld6bn")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_thjs3")
 LineEdit/styles/read_only = null
+MenuButton/styles/normal = SubResource("StyleBoxFlat_mwp6t")
 Panel/styles/panel = SubResource("StyleBoxFlat_4jvgb")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_2xhu8")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_6msc1")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_b6cld")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 TabContainer/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 TabContainer/colors/font_selected_color = Color(0, 0, 0, 1)
