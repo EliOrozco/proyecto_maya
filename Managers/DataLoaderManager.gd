@@ -1,13 +1,14 @@
 extends Node
 
-@onready var tabSelec = $TabsNuevoModificar/Editar/DivisorST/Divisor/TableSelector
-@onready var optionSelec = $TabsNuevoModificar/Editar/DivisorST/Atributos/OptionButton
-@onready var lookUpButton = $TabsNuevoModificar/Editar/DivisorST/Divisor/LookupButton
-@onready var itemList = $TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer/ItemList
+@onready var tabSelec : OptionButton = $TabsNuevoModificar/Editar/DivisorST/Divisor/TableSelector
+@onready var nuevo_button: Button = $TabsNuevoModificar/Editar/DivisorST/Atributos/NuevoButton
+@onready var lookUpButton : Button = $TabsNuevoModificar/Editar/DivisorST/Divisor/LookupButton
+@onready var itemList : ItemList = $TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer/ItemList
 @onready var id_line_edit: LineEdit = $TabsNuevoModificar/Editar/DivisorST/Atributos/IdLineEdit
 @onready var nombre_line_edit: LineEdit = $TabsNuevoModificar/Editar/DivisorST/Atributos/NombreLineEdit
 @onready var descrip_line_edit: LineEdit = $TabsNuevoModificar/Editar/DivisorST/Atributos/DescripLineEdit
 @onready var spin_box: SpinBox = $TabsNuevoModificar/Editar/DivisorST/Atributos/SpinBox
+@onready var cat_sel_button: OptionButton = $TabsNuevoModificar/Editar/DivisorST/Atributos/CatSelButton
 @onready var importer_button: Button = $TabsNuevoModificar/Editar/DivisorST/Atributos/ImporterButton
 @onready var update_button: Button = $TabsNuevoModificar/Editar/DivisorST/Atributos/UpdateButton
 @onready var preview: TextureRect = $TabsNuevoModificar/Editar/DivisorST/Atributos/Preview
@@ -15,8 +16,12 @@ extends Node
 
 var loaded_image
 var type_selected : int
+var is_new : bool = false
 
 func disable_fields():
+	itemList.clear()
+	is_new = false
+	nuevo_button.disabled = true
 	id_line_edit.editable = false
 	id_line_edit.text = ""
 	nombre_line_edit.editable = false
@@ -25,6 +30,9 @@ func disable_fields():
 	descrip_line_edit.text = ""
 	spin_box.editable = false
 	spin_box.value = 0.0
+	cat_sel_button.clear()
+	cat_sel_button.selected = -1
+	cat_sel_button.disabled = true
 	preview.texture = null
 	importer_button.disabled = true
 	update_button.disabled = true
@@ -42,6 +50,7 @@ func load_image(bytearray):
 func _on_file_dialog_file_selected(path: String) -> void:
 	var image = Image.new()
 	image.load(path)
+	image.resize(512,512) #tamaño de la imagen
 	var image_texture = ImageTexture.new()
 	image_texture.set_image(image)
 	preview.texture = image_texture
@@ -50,13 +59,14 @@ func _on_file_dialog_file_selected(path: String) -> void:
 
 func _on_lookup_button_pressed() -> void:
 	disable_fields()
-	itemList.clear()
+	nuevo_button.disabled = false
 	match tabSelec.selected:
 		0: #tabla productos o secciones
 			type_selected = 0
 			DbManager.initial_query()
 			for i in DbManager.sectionList.size():
 				itemList.add_item(DbManager.sectionList[i]["nombre"])
+			cat_sel_button.selected = -1
 			nombre_line_edit.editable = true
 			descrip_line_edit.editable = true
 			importer_button.disabled = false
@@ -66,10 +76,13 @@ func _on_lookup_button_pressed() -> void:
 			DbManager.query_all_products()
 			for i in DbManager.allProductList.size():
 				itemList.add_item(DbManager.allProductList[i]["nombre"] + " - " + DbManager.allProductList[i]["tipo_nombre"])
+			for i in DbManager.dbSectionSize:
+				cat_sel_button.add_item(DbManager.sectionList[i]["nombre"])
 			nombre_line_edit.editable = true
 			spin_box.editable = true
 			importer_button.disabled = false
 			update_button.disabled = false
+			cat_sel_button.disabled = false
 		2: #tabla modificadores
 			type_selected = 2
 			DbManager.query_all_mods()
@@ -82,6 +95,7 @@ func _on_lookup_button_pressed() -> void:
 			NotifMessage.send("Opción no recibida correctamente")
 
 func _on_item_list_item_selected(index: int) -> void:
+	nuevo_button.disabled = false
 	match type_selected:
 		0: #secciones
 			id_line_edit.text = str(DbManager.sectionList[index]["producto_id"])
@@ -95,6 +109,7 @@ func _on_item_list_item_selected(index: int) -> void:
 			spin_box.value = DbManager.allProductList[index]["precio_base"]
 			preview.texture = load_image(DbManager.allProductList[index]["img"])
 			loaded_image = DbManager.allProductList[index]["img"]
+			cat_sel_button.selected = int(DbManager.allProductList[index]["producto_id"]) - 1
 		2: #modificadores
 			id_line_edit.text = str(DbManager.allModsList[index]["modificador_id"])
 			nombre_line_edit.text = DbManager.allModsList[index]["nombre"]
@@ -106,28 +121,79 @@ func _on_importer_button_pressed() -> void:
 	file_dialog.popup()
 
 func _on_update_button_pressed() -> void:
-	match type_selected:
-		0: #secciones
-			var dict = {
-				"nombre" = str(nombre_line_edit.text),
-				"descripcion" = str(descrip_line_edit.text),
-				"img" = loaded_image
-			}
-			DbManager.update_query("productos", "producto_id=" + str(id_line_edit.text), dict)
-			_on_lookup_button_pressed()
-		1: #productos
-			var dict = {
-				"tipo_nombre" = str(nombre_line_edit.text),
-				"precio_base" = float(spin_box.value),
-				"img" = loaded_image
-			}
-			DbManager.update_query("producto_tipos", "producto_tipo_id=" + str(id_line_edit.text),dict)
-			_on_lookup_button_pressed()
-		2: #modificadores
-			var dict = {
-				"nombre" = str(nombre_line_edit.text),
-				"ajuste_precio" = float(spin_box.value)
-			}
-			DbManager.update_query("modificadores", "modificador_id=" + str(id_line_edit.text), dict)
-			_on_lookup_button_pressed()
-	NotifMessage.send("Actualizado correctamente")
+	if is_new: #si el producto seleccionado será nuevo
+		match type_selected:
+			0: #categorias
+				if nombre_line_edit.text.is_empty() or descrip_line_edit.text.is_empty():
+					NotifMessage.send("Hay campos sin llenar")
+					pass
+				else:
+					var dict = {
+						"producto_id" : int(DbManager.dbSectionSize) +1,
+						"nombre" : str(nombre_line_edit.text),
+						"descripcion" : str(descrip_line_edit.text),
+						"img" : loaded_image
+					}
+					DbManager.insert_query("productos", dict)
+					_on_lookup_button_pressed()
+			1: #productos
+				if nombre_line_edit.text.is_empty():
+					NotifMessage.send("Hay campos sin llenar")
+					pass
+				else:
+					var dict = {
+						"producto_tipo_id" : int(DbManager.allProductList.size()) + 1,
+						"producto_tipo" : int(cat_sel_button.selected + 1),
+						"tipo_nombre" : str(nombre_line_edit.text),
+						"precio_base" : float(spin_box.value),
+						"img" : loaded_image
+					}
+					DbManager.insert_query("producto_tipos", dict)
+					_on_lookup_button_pressed()
+			2: # modificadores
+				if nombre_line_edit.text.is_empty():
+					NotifMessage.send("Hay campos sin llenar")
+					pass
+				else:
+					var dict = {
+						"nombre" : str(nombre_line_edit.text),
+						"ajuste_precio" : float(spin_box.value)
+					}
+					DbManager.insert_query("modificadores", dict)
+					_on_lookup_button_pressed()
+		NotifMessage.send("Producto nuevo añadido correctamente")
+	else: # si es un update nada más
+		match type_selected:
+			0: #secciones
+				var dict = {
+					"nombre" : str(nombre_line_edit.text),
+					"descripcion" : str(descrip_line_edit.text),
+					"img" : loaded_image
+				}
+				DbManager.update_query("productos", "producto_id=" + str(id_line_edit.text), dict)
+				_on_lookup_button_pressed()
+			1: #productos
+				var dict = {
+					"producto_tipo" : int(cat_sel_button.selected + 1),
+					"tipo_nombre" : str(nombre_line_edit.text),
+					"precio_base" : float(spin_box.value),
+					"img" : loaded_image
+				}
+				DbManager.update_query("producto_tipos", "producto_tipo_id=" + str(id_line_edit.text),dict)
+				_on_lookup_button_pressed()
+			2: #modificadores
+				var dict = {
+					"nombre" : str(nombre_line_edit.text),
+					"ajuste_precio" : float(spin_box.value)
+				}
+				DbManager.update_query("modificadores", "modificador_id=" + str(id_line_edit.text), dict)
+				_on_lookup_button_pressed()
+		NotifMessage.send("Actualizado correctamente")
+
+func _on_nuevo_button_pressed() -> void:
+	nuevo_button.disabled = true
+	id_line_edit.text = "Añadiendo nuevo"
+	nombre_line_edit.text = ""
+	descrip_line_edit.text = ""
+	spin_box.value = 0.0
+	preview.texture = null

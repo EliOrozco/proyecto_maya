@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://dcmf725vhn78r" path="res://themes/sikil_light_theme.tres" id="2_dhkvj"]
 [ext_resource type="Texture2D" uid="uid://b41cmbb21wyep" path="res://texture/logos/Logo Files/Full Lockup/Lockup_Color.png" id="3_wi8ec"]
 [ext_resource type="Script" uid="uid://bvs1ae4u45fqf" path="res://Managers/AnimationComponent.gd" id="4_wi8ec"]
-[ext_resource type="Script" uid="uid://jfjpg0nsw33y" path="res://Managers/DataLoaderManager.gd" id="5_odcd3"]
+[ext_resource type="PackedScene" uid="uid://s1xs1bhe1kqp" path="res://Scenes/dataLoader.tscn" id="5_odcd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odcd3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -185,153 +185,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
 
-[node name="Consultas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
+[node name="Consultas" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs" instance=ExtResource("5_odcd3")]
 layout_mode = 2
-script = ExtResource("5_odcd3")
-metadata/_tab_index = 1
-
-[node name="TabsNuevoModificar" type="TabContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas"]
-layout_mode = 2
-size_flags_vertical = 3
-current_tab = 0
-
-[node name="Editar" type="MarginContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-metadata/_tab_index = 0
-
-[node name="DivisorST" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Divisor" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TableSelector" type="OptionButton" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor"]
-layout_mode = 2
-alignment = 1
-selected = 1
-item_count = 3
-popup/item_0/text = "Categorias"
-popup/item_0/id = 0
-popup/item_1/text = "Productos"
-popup/item_1/id = 1
-popup/item_2/text = "Modificadores"
-popup/item_2/id = 2
-
-[node name="LookupButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor"]
-layout_mode = 2
-text = "Buscar"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ItemList" type="ItemList" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer"]
-custom_minimum_size = Vector2(0, 500)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 1
-auto_height = true
-text_overrun_behavior = 0
-
-[node name="Atributos" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST"]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="OptionButton" type="OptionButton" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-alignment = 1
-selected = 0
-item_count = 2
-popup/item_0/text = "Editar"
-popup/item_0/id = 0
-popup/item_1/text = "Nuevo"
-popup/item_1/id = 1
-
-[node name="IdLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-text = "ID es:"
-
-[node name="IdLineEdit" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-placeholder_text = "ID"
-editable = false
-
-[node name="NombreLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-text = "Nombre es:"
-
-[node name="NombreLineEdit" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-placeholder_text = "Nombre"
-editable = false
-clear_button_enabled = true
-select_all_on_focus = true
-
-[node name="DescLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-text = "Descripción"
-
-[node name="DescripLineEdit" type="LineEdit" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-placeholder_text = "Descripción"
-max_length = 30
-editable = false
-clear_button_enabled = true
-select_all_on_focus = true
-
-[node name="PrecioLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-text = "Precio"
-
-[node name="SpinBox" type="SpinBox" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-max_value = 1000.0
-step = 0.5
-editable = false
-prefix = "$"
-select_all_on_focus = true
-
-[node name="ImgLabel" type="Label" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-text = "Imagen (Usa imagenes de 512 x 512)"
-
-[node name="Preview" type="TextureRect" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-expand_mode = 5
-
-[node name="ImporterButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-disabled = true
-text = "ImportarImagen"
-
-[node name="UpdateButton" type="Button" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-layout_mode = 2
-disabled = true
-text = "Realizar Cambios"
-
-[node name="FileDialog" type="FileDialog" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos"]
-title = "Open a File"
-initial_position = 1
-ok_button_text = "Open"
-dialog_hide_on_ok = true
-file_mode = 0
-access = 2
-use_native_dialog = true
-
-[node name="Relaciones" type="HBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
 
 [node name="Tablero" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
 visible = false
@@ -342,8 +197,3 @@ metadata/_tab_index = 2
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/EliminarItem" to="." method="_on_eliminar_item_pressed"]
 [connection signal="text_changed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Buscador" to="." method="_on_buscador_text_changed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Volver" to="." method="_on_volver_pressed"]
-[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/LookupButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_lookup_button_pressed"]
-[connection signal="item_selected" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer/ItemList" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_item_list_item_selected"]
-[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos/ImporterButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_importer_button_pressed"]
-[connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos/UpdateButton" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_update_button_pressed"]
-[connection signal="file_selected" from="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Atributos/FileDialog" to="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas" method="_on_file_dialog_file_selected"]

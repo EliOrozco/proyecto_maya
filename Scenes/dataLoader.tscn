@@ -1,0 +1,162 @@
+[gd_scene load_steps=2 format=3 uid="uid://s1xs1bhe1kqp"]
+
+[ext_resource type="Script" uid="uid://jfjpg0nsw33y" path="res://Managers/DataLoaderManager.gd" id="1_rqo22"]
+
+[node name="Consultas" type="VBoxContainer"]
+script = ExtResource("1_rqo22")
+metadata/_tab_index = 1
+
+[node name="TabsNuevoModificar" type="TabContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Editar" type="MarginContainer" parent="TabsNuevoModificar"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+metadata/_tab_index = 0
+
+[node name="DivisorST" type="HBoxContainer" parent="TabsNuevoModificar/Editar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Divisor" type="VBoxContainer" parent="TabsNuevoModificar/Editar/DivisorST"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TableSelector" type="OptionButton" parent="TabsNuevoModificar/Editar/DivisorST/Divisor"]
+layout_mode = 2
+alignment = 1
+selected = 1
+item_count = 3
+popup/item_0/text = "Categorias"
+popup/item_0/id = 0
+popup/item_1/text = "Productos"
+popup/item_1/id = 1
+popup/item_2/text = "Modificadores"
+popup/item_2/id = 2
+
+[node name="LookupButton" type="Button" parent="TabsNuevoModificar/Editar/DivisorST/Divisor"]
+layout_mode = 2
+text = "Buscar"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabsNuevoModificar/Editar/DivisorST/Divisor"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+auto_height = true
+text_overrun_behavior = 0
+
+[node name="Atributos" type="VBoxContainer" parent="TabsNuevoModificar/Editar/DivisorST"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NuevoButton" type="Button" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+disabled = true
+text = "Nuevo"
+
+[node name="IdLabel" type="Label" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+text = "ID es:"
+
+[node name="IdLineEdit" type="LineEdit" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+placeholder_text = "ID"
+editable = false
+
+[node name="NombreLabel" type="Label" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+text = "Nombre es:"
+
+[node name="NombreLineEdit" type="LineEdit" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+placeholder_text = "Nombre"
+editable = false
+clear_button_enabled = true
+select_all_on_focus = true
+
+[node name="DescLabel" type="Label" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+text = "Descripción"
+
+[node name="DescripLineEdit" type="LineEdit" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+placeholder_text = "Descripción"
+max_length = 30
+editable = false
+clear_button_enabled = true
+select_all_on_focus = true
+
+[node name="PrecioLabel" type="Label" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+text = "Precio"
+
+[node name="SpinBox" type="SpinBox" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+max_value = 1000.0
+step = 0.5
+allow_lesser = true
+editable = false
+prefix = "$"
+select_all_on_focus = true
+
+[node name="CatLabel" type="Label" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+text = "Escoge una categoría"
+
+[node name="CatSelButton" type="OptionButton" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+disabled = true
+
+[node name="ImgLabel" type="Label" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+text = "Imagen (Usa imágenes cuadradas)"
+
+[node name="Preview" type="TextureRect" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+expand_mode = 5
+
+[node name="ImporterButton" type="Button" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+disabled = true
+text = "Importar Imagen"
+
+[node name="UpdateButton" type="Button" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+disabled = true
+text = "Realizar Cambios"
+
+[node name="FileDialog" type="FileDialog" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 1
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+use_native_dialog = true
+
+[node name="Relaciones" type="HBoxContainer" parent="TabsNuevoModificar"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Divisor/LookupButton" to="." method="_on_lookup_button_pressed"]
+[connection signal="item_selected" from="TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Atributos/NuevoButton" to="." method="_on_nuevo_button_pressed"]
+[connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Atributos/ImporterButton" to="." method="_on_importer_button_pressed"]
+[connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Atributos/UpdateButton" to="." method="_on_update_button_pressed"]
+[connection signal="file_selected" from="TabsNuevoModificar/Editar/DivisorST/Atributos/FileDialog" to="." method="_on_file_dialog_file_selected"]
