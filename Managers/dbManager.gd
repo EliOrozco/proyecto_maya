@@ -25,6 +25,8 @@ func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abr
 	db = SQLite.new()
 	db.path = "res://database.db"
 	db.open_db()
+	db.foreign_keys = false
+	db.verbosity_level = 1 #aumentar en 2 para aumentar impresiones en consola
 	print("Se ha abierto una base de datos aquí -> res://database.db")
 	initial_query()
 
@@ -51,7 +53,7 @@ func products_in_section_query(sectionVarQuery : int):
 
 func query_all_products():
 	allProductList.clear()
-	db.query("SELECT t.producto_tipo_id, t.producto_id, p.nombre, t.tipo_nombre, t.precio_base, t.img FROM producto_tipos t LEFT JOIN productos p ON t.producto_id = p.producto_id;")
+	db.query("SELECT t.producto_tipo_id, t.producto_id, p.nombre, t.tipo_nombre, t.precio_base, t.img FROM producto_tipos t LEFT JOIN productos p ON t.producto_id = p.producto_id ORDER BY t.producto_id;")
 	for i in db.query_result.size():
 		allProductList.append(db.query_result[i])
 

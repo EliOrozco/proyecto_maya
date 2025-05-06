@@ -17,11 +17,11 @@ var calculated_final_price : float = 0.0
 # Se ejecuta una sóla vez
 func _ready() -> void:
 	reload_item_sections_buttons()
+	ticketSizeLabel.text = "#" + str(DbManager.get_last_created_ticket() + 1) #todavia no se actualiza con el último ticket
 	pass
 
 # Se ejecuta cada frame, reducir funciones que van aquí
 func _process(_delta: float) -> void:
-	ticketSizeLabel.text = "#" + str(DbManager.get_last_created_ticket() + 1) #sacar de aqui, no debe ejecutarse cada frame
 	if Input.is_action_just_pressed("f1"):
 		_on_nuevo_ticket_button_pressed()
 	if Input.is_action_just_pressed("f12"):

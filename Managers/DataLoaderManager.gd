@@ -124,32 +124,30 @@ func _on_update_button_pressed() -> void:
 	if is_new: #si el producto seleccionado será nuevo
 		match type_selected:
 			0: #categorias
-				if nombre_line_edit.text.is_empty() or descrip_line_edit.text.is_empty():
+				if nombre_line_edit.text.is_empty() or descrip_line_edit.text.is_empty(): #hace verificaciones para evitar campos vacios
 					NotifMessage.send("Hay campos sin llenar")
 					pass
 				else:
 					var dict = {
-						"producto_id" : int(DbManager.dbSectionSize) +1,
+						#"producto_id" : int(DbManager.dbSectionSize + 1),
 						"nombre" : str(nombre_line_edit.text),
 						"descripcion" : str(descrip_line_edit.text),
 						"img" : loaded_image
 					}
 					DbManager.insert_query("productos", dict)
-					_on_lookup_button_pressed()
 			1: #productos
 				if nombre_line_edit.text.is_empty():
 					NotifMessage.send("Hay campos sin llenar")
 					pass
 				else:
 					var dict = {
-						"producto_tipo_id" : int(DbManager.allProductList.size()) + 1,
-						"producto_tipo" : int(cat_sel_button.selected + 1),
+						#"producto_tipo_id" : int(DbManager.allProductList.size() + 1),
+						"producto_id" : int(cat_sel_button.selected + 1),
 						"tipo_nombre" : str(nombre_line_edit.text),
 						"precio_base" : float(spin_box.value),
 						"img" : loaded_image
 					}
 					DbManager.insert_query("producto_tipos", dict)
-					_on_lookup_button_pressed()
 			2: # modificadores
 				if nombre_line_edit.text.is_empty():
 					NotifMessage.send("Hay campos sin llenar")
@@ -160,8 +158,8 @@ func _on_update_button_pressed() -> void:
 						"ajuste_precio" : float(spin_box.value)
 					}
 					DbManager.insert_query("modificadores", dict)
-					_on_lookup_button_pressed()
 		NotifMessage.send("Producto nuevo añadido correctamente")
+		_on_lookup_button_pressed()
 	else: # si es un update nada más
 		match type_selected:
 			0: #secciones
@@ -171,24 +169,22 @@ func _on_update_button_pressed() -> void:
 					"img" : loaded_image
 				}
 				DbManager.update_query("productos", "producto_id=" + str(id_line_edit.text), dict)
-				_on_lookup_button_pressed()
 			1: #productos
 				var dict = {
-					"producto_tipo" : int(cat_sel_button.selected + 1),
+					"producto_id" : int(cat_sel_button.selected + 1),
 					"tipo_nombre" : str(nombre_line_edit.text),
 					"precio_base" : float(spin_box.value),
 					"img" : loaded_image
 				}
 				DbManager.update_query("producto_tipos", "producto_tipo_id=" + str(id_line_edit.text),dict)
-				_on_lookup_button_pressed()
 			2: #modificadores
 				var dict = {
 					"nombre" : str(nombre_line_edit.text),
 					"ajuste_precio" : float(spin_box.value)
 				}
 				DbManager.update_query("modificadores", "modificador_id=" + str(id_line_edit.text), dict)
-				_on_lookup_button_pressed()
 		NotifMessage.send("Actualizado correctamente")
+		_on_lookup_button_pressed()
 
 func _on_nuevo_button_pressed() -> void:
 	nuevo_button.disabled = true
@@ -197,3 +193,5 @@ func _on_nuevo_button_pressed() -> void:
 	descrip_line_edit.text = ""
 	spin_box.value = 0.0
 	preview.texture = null
+	itemList.clear()
+	is_new = true
