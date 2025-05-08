@@ -69,12 +69,18 @@ func update_change_money():
 
 func _on_imprimir_button_pressed() -> void:
 	DbManager.clear_section_queries()
+	var datetime : String = Time.get_datetime_string_from_system(false, true)
+	var ticket_string : String
 	PrinterManager.ticket_number = ticketNumber
-	PrinterManager.ticket_list = currentTicket #cambiar por currentTicketJson
+	PrinterManager.ticket_list = currentTicket
+	#convertir a string
+	ticket_string = str(currentTicket)
 	PrinterManager.ticket_total = calculatedFinalPrice
 	PrinterManager.money_received = moneyReceived.text
 	PrinterManager.money_change = moneyChange
+	PrinterManager.datetime = datetime
 	PrinterManager.ConectToPrinter()
+	DbManager.create_ticket(datetime, ticket_string, calculatedFinalPrice, float(moneyReceived.text), moneyChange)
 	NotifMessage.send("Imprimendo Ticket...")
 	clear_ticket_signal.emit()
 	window.queue_free()

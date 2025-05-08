@@ -19,6 +19,7 @@ public partial class PrinterManager : Node
 	public float money_change;
 	public float ticket_total;
 	public string ticket_number;
+	public string datetime;
 
 	public override void _Ready()
 	{
@@ -28,7 +29,7 @@ public partial class PrinterManager : Node
 	public void ConectToPrinter()
 	{
 		GD.Print("--------------------------");
-		GD.Print("Tu ticket es:" + ticket_number +  " / TOTAL: " + ticket_total + " / RECIBIDO: " + money_received + " / CAMBIO: " + money_change + " / DETALLES: ");
+		GD.Print("Tu ticket es: #" + ticket_number + " / FECHA Y HORA: " + datetime + " / TOTAL: " + ticket_total + " / RECIBIDO: " + money_received + " / CAMBIO: " + money_change + " / DETALLES: ");
 		
 		foreach (var dict in ticket_list)
 		{

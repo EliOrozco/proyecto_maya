@@ -13,7 +13,6 @@ var allProductList : Array = []
 
 #lista de mods en un tipo
 var modsList : Array = []
-
 var allModsList : Array = []
 
 #info de los mods
@@ -21,12 +20,15 @@ var idMod : int
 var nombreMod : String
 var ajustePrecioMod : float
 
+#tickets!!!
+var ticketinfo : Array = []
+
 func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abre para acceder a esos valores 
 	db = SQLite.new()
 	db.path = "res://database.db"
 	db.open_db()
 	db.foreign_keys = false
-	db.verbosity_level = 1 #aumentar en 2 para aumentar impresiones en consola
+	db.verbosity_level = 1 #INFO: aumentar en 2 para aumentar impresiones en consola
 	print("Se ha abierto una base de datos aquí -> res://database.db")
 	initial_query()
 
@@ -87,38 +89,19 @@ func get_product(idProductQuery):
 	var set_condition = "modificador_id=" + str(idProduct)
 	select_query("modificadores", set_condition, ["nombre", "ajuste_precio"])
 
-func create_ticket():
-	var get_time = Time.get_datetime_string_from_system(false, true)
-	var data_dict = {
-		"fecha" : get_time
+func create_ticket(datetime : String, info : String, cobrado : float, recibido : float, cambio : float):
+	var dict = {
+		"fecha" : datetime,
+		"info" : info,
+		"total_cobrado" : cobrado,
+		"total_recibido" : recibido,
+		"total_cambio" : cambio
 	}
-	insert_query("tickets", data_dict)
-
-func create_ticket_items(producto_tipo_id_query : int, cantidadQuery : int, precioBaseQuery : float):
-	var data_dict = {
-		"ticket_id" : get_last_created_ticket(),
-		"producto_tipo_id" : producto_tipo_id_query,
-		"cantidad" : cantidadQuery,
-		"precio_base" : precioBaseQuery,
-		"precio_total" : cantidadQuery * precioBaseQuery
-	}
-	insert_query("ticket_items", data_dict)
-	
-func create_mod_in_ticket_item(modificador_id_query : int, ajuste_precio_query : float):
-	var data_dict = {
-		"ticket_item_id" : get_last_created_ticket_item(),
-		"modificador_id" : modificador_id_query,
-		"ajuste_precio"  : ajuste_precio_query
-	}
-	insert_query("ticket_item_modificadores", data_dict)
+	insert_query("tickets", dict)
 
 func get_last_created_ticket() -> int:
 	db.query("SELECT ticket_id from tickets ORDER by ticket_id DESC LIMIT 1;")
 	return int(db.query_result[0]["ticket_id"])
-	
-func get_last_created_ticket_item() -> int:
-	db.query("SELECT ticket_item_id from ticket_items ORDER by ticket_item_id DESC LIMIT 1;")
-	return int(db.query_result[0]["ticket_item_id"])
 
 func clear_section_queries():
 	productList.clear()
@@ -130,6 +113,12 @@ func clear_mod_info():
 	idMod = 0
 	nombreMod = ""
 	ajustePrecioMod = 0.0
+
+func select_ticket(selectedTicket : int):
+	ticketinfo.clear()
+	var set_condition = "ticket_id=" + str(selectedTicket)
+	select_query("tickets", set_condition , ["fecha", "info", "total_cobrado", "total_recibido", "total_cambio"])
+	ticketinfo.append(db.query_result[0])
 
 func select_query(table : String, conditions : String, columns : Array): #anade el preformato para hacer consultas 
 	db.select_rows(table, conditions, columns)

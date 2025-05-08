@@ -123,6 +123,7 @@ func _on_nuevo_ticket_button_pressed() -> void:
 		cambioWindowInstance.clear_ticket_signal.connect(clear_ticket)
 
 func clear_ticket():
+	ticketSizeLabel.text = "#" + str(DbManager.get_last_created_ticket() + 1)
 	buscador.grab_focus()
 	itemList.clear()
 	current_ticket.clear()

@@ -14,6 +14,14 @@ extends Node
 @onready var preview: TextureRect = $TabsNuevoModificar/Editar/DivisorST/Atributos/Preview
 @onready var file_dialog: FileDialog = $TabsNuevoModificar/Editar/DivisorST/Atributos/FileDialog
 
+@onready var ticket_num: SpinBox = $TabsNuevoModificar/Tickets/DivConsTicket/DivBotones/TicketNum
+@onready var buscar_ticket_button: Button = $TabsNuevoModificar/Tickets/DivConsTicket/DivBotones/BuscarTicketButton
+@onready var datimeeditlabel: Label = $TabsNuevoModificar/Tickets/DivConsTicket/datimeeditlabel
+@onready var totaleditlabel: Label = $TabsNuevoModificar/Tickets/DivConsTicket/DivDatos/totaleditlabel
+@onready var receivededitlabel: Label = $TabsNuevoModificar/Tickets/DivConsTicket/DivDatos/receivededitlabel
+@onready var cambioeditlabel: Label = $TabsNuevoModificar/Tickets/DivConsTicket/DivDatos/cambioeditlabel
+@onready var ticket_info: TextEdit = $TabsNuevoModificar/Tickets/DivConsTicket/ScrollContainer/ticketInfo
+
 var loaded_image
 var type_selected : int
 var is_new : bool = false
@@ -142,7 +150,7 @@ func _on_update_button_pressed() -> void:
 				else:
 					var dict = {
 						#"producto_tipo_id" : int(DbManager.allProductList.size() + 1),
-						"producto_id" : int(cat_sel_button.selected + 1),
+						"producto_id" : int(cat_sel_button.selected + 1), # TODO: Cambiar esto, la lógica no asume ids borradas ni fuera de orden
 						"tipo_nombre" : str(nombre_line_edit.text),
 						"precio_base" : float(spin_box.value),
 						"img" : loaded_image
@@ -195,3 +203,28 @@ func _on_nuevo_button_pressed() -> void:
 	preview.texture = null
 	itemList.clear()
 	is_new = true
+
+func _on_buscar_ticket_button_pressed() -> void:
+	ticket_info.clear()
+	DbManager.select_ticket(int(ticket_num.value))
+	datimeeditlabel.text = str(DbManager.ticketinfo[0]["fecha"])
+	totaleditlabel.text = str(DbManager.ticketinfo[0]["total_cobrado"])
+	receivededitlabel.text = str(DbManager.ticketinfo[0]["total_recibido"])
+	cambioeditlabel.text = str(DbManager.ticketinfo[0]["total_cambio"])
+	#intento de conversión a dict
+	var ticketStringArray = str_to_var(DbManager.ticketinfo[0]["info"])
+	for i in ticketStringArray.size():
+		var json = JSON.new()
+		var sjson = JSON.stringify(ticketStringArray[i])
+		var error = json.parse(sjson)
+		if error == OK:
+			var data_received = json.data
+			var detail : String = ""
+			detail += "Producto: " + str(data_received["producto"]) + "\n"
+			detail += "De: " + str(data_received["tipo"]) + "\n"
+			detail += "Cantidad: " + str(data_received["cantidad"]) + "\n"
+			detail += "Modificadores: " + str(data_received["modificadores"]) + "\n"
+			detail += "Subtotal: $" + str(data_received["subtotal"]) + "\n"
+			detail += "Total: $" + str(data_received["total"]) + "\n"
+			ticket_info.text += detail + "------------\n"
+		

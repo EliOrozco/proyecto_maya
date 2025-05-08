@@ -9,9 +9,10 @@ metadata/_tab_index = 1
 [node name="TabsNuevoModificar" type="TabContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 2
 
 [node name="Editar" type="MarginContainer" parent="TabsNuevoModificar"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -154,9 +155,99 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
+[node name="Tickets" type="MarginContainer" parent="TabsNuevoModificar"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 2
+
+[node name="DivConsTicket" type="VBoxContainer" parent="TabsNuevoModificar/Tickets"]
+layout_mode = 2
+
+[node name="NumTicketLabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket"]
+layout_mode = 2
+text = "Ingrese el ticket a buscar"
+
+[node name="DivBotones" type="HBoxContainer" parent="TabsNuevoModificar/Tickets/DivConsTicket"]
+layout_mode = 2
+
+[node name="TicketNum" type="SpinBox" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivBotones"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+value = 4.0
+allow_greater = true
+prefix = "#"
+select_all_on_focus = true
+
+[node name="BuscarTicketButton" type="Button" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivBotones"]
+layout_mode = 2
+text = "Buscar"
+
+[node name="datetimelabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket"]
+layout_mode = 2
+text = "Fecha y hora:"
+
+[node name="datimeeditlabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket"]
+layout_mode = 2
+text = "##/##/## ##:##:##"
+
+[node name="DivDatos" type="HBoxContainer" parent="TabsNuevoModificar/Tickets/DivConsTicket"]
+layout_mode = 2
+
+[node name="totallabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivDatos"]
+layout_mode = 2
+text = "Total del ticket: $"
+
+[node name="totaleditlabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivDatos"]
+layout_mode = 2
+text = "##.##"
+
+[node name="receivedlabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivDatos"]
+layout_mode = 2
+text = "Dinero recibido: $"
+
+[node name="receivededitlabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivDatos"]
+layout_mode = 2
+text = "##.##"
+
+[node name="cambiolabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivDatos"]
+layout_mode = 2
+text = "Cambio: $"
+
+[node name="cambioeditlabel" type="Label" parent="TabsNuevoModificar/Tickets/DivConsTicket/DivDatos"]
+layout_mode = 2
+text = "##.##"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabsNuevoModificar/Tickets/DivConsTicket"]
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ticketInfo" type="TextEdit" parent="TabsNuevoModificar/Tickets/DivConsTicket/ScrollContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+autowrap_mode = 2
+scroll_fit_content_height = true
+
 [connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Divisor/LookupButton" to="." method="_on_lookup_button_pressed"]
 [connection signal="item_selected" from="TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer/ItemList" to="." method="_on_item_list_item_selected"]
 [connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Atributos/NuevoButton" to="." method="_on_nuevo_button_pressed"]
 [connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Atributos/ImporterButton" to="." method="_on_importer_button_pressed"]
 [connection signal="pressed" from="TabsNuevoModificar/Editar/DivisorST/Atributos/UpdateButton" to="." method="_on_update_button_pressed"]
 [connection signal="file_selected" from="TabsNuevoModificar/Editar/DivisorST/Atributos/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="TabsNuevoModificar/Tickets/DivConsTicket/DivBotones/BuscarTicketButton" to="." method="_on_buscar_ticket_button_pressed"]
