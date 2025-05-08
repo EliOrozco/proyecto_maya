@@ -206,25 +206,28 @@ func _on_nuevo_button_pressed() -> void:
 
 func _on_buscar_ticket_button_pressed() -> void:
 	ticket_info.clear()
-	DbManager.select_ticket(int(ticket_num.value))
-	datimeeditlabel.text = str(DbManager.ticketinfo[0]["fecha"])
-	totaleditlabel.text = str(DbManager.ticketinfo[0]["total_cobrado"])
-	receivededitlabel.text = str(DbManager.ticketinfo[0]["total_recibido"])
-	cambioeditlabel.text = str(DbManager.ticketinfo[0]["total_cambio"])
-	#intento de conversión a dict
-	var ticketStringArray = str_to_var(DbManager.ticketinfo[0]["info"])
-	for i in ticketStringArray.size():
-		var json = JSON.new()
-		var sjson = JSON.stringify(ticketStringArray[i])
-		var error = json.parse(sjson)
-		if error == OK:
-			var data_received = json.data
-			var detail : String = ""
-			detail += "Producto: " + str(data_received["producto"]) + "\n"
-			detail += "De: " + str(data_received["tipo"]) + "\n"
-			detail += "Cantidad: " + str(data_received["cantidad"]) + "\n"
-			detail += "Modificadores: " + str(data_received["modificadores"]) + "\n"
-			detail += "Subtotal: $" + str(data_received["subtotal"]) + "\n"
-			detail += "Total: $" + str(data_received["total"]) + "\n"
-			ticket_info.text += detail + "------------\n"
+	if ticket_num.value <= DbManager.get_last_created_ticket():
+		DbManager.select_ticket(int(ticket_num.value))
+		datimeeditlabel.text = str(DbManager.ticketinfo[0]["fecha"])
+		totaleditlabel.text = str(DbManager.ticketinfo[0]["total_cobrado"])
+		receivededitlabel.text = str(DbManager.ticketinfo[0]["total_recibido"])
+		cambioeditlabel.text = str(DbManager.ticketinfo[0]["total_cambio"])
+		#intento de conversión a dict
+		var ticketStringArray = str_to_var(DbManager.ticketinfo[0]["info"])
+		for i in ticketStringArray.size():
+			var json = JSON.new()
+			var sjson = JSON.stringify(ticketStringArray[i])
+			var error = json.parse(sjson)
+			if error == OK:
+				var data_received = json.data
+				var detail : String = ""
+				detail += "Producto: " + str(data_received["producto"]) + "\n"
+				detail += "De: " + str(data_received["tipo"]) + "\n"
+				detail += "Cantidad: " + str(data_received["cantidad"]) + "\n"
+				detail += "Modificadores: " + str(data_received["modificadores"]) + "\n"
+				detail += "Subtotal: $" + str(data_received["subtotal"]) + "\n"
+				detail += "Total: $" + str(data_received["total"]) + "\n"
+				ticket_info.text += detail + "------------\n"
+	else:
+		NotifMessage.send("Ese ticket no existe")
 		

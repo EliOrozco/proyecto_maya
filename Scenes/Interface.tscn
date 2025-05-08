@@ -151,11 +151,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q64hd")
 [node name="ContenedorTabs" type="TabContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos"]
 custom_minimum_size = Vector2(800, 648)
 layout_mode = 2
-size_flags_horizontal = 0
-current_tab = 1
+current_tab = 0
 
 [node name="Ventas" type="VBoxContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
-visible = false
 clip_contents = true
 layout_mode = 2
 metadata/_tab_index = 0
@@ -186,12 +184,8 @@ size_flags_vertical = 3
 columns = 3
 
 [node name="Consultas" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs" instance=ExtResource("5_odcd3")]
-layout_mode = 2
-
-[node name="Tablero" type="GridContainer" parent="controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
 
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/NuevoTicketButton" to="." method="_on_nuevo_ticket_button_pressed"]
 [connection signal="pressed" from="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/HBoxContainer/EliminarItem" to="." method="_on_eliminar_item_pressed"]

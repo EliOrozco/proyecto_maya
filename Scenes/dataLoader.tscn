@@ -9,10 +9,9 @@ metadata/_tab_index = 1
 [node name="TabsNuevoModificar" type="TabContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 2
+current_tab = 0
 
 [node name="Editar" type="MarginContainer" parent="TabsNuevoModificar"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -119,6 +118,11 @@ text = "Escoge una categoría"
 layout_mode = 2
 disabled = true
 
+[node name="ModEditButton" type="Button" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
+layout_mode = 2
+disabled = true
+text = "Editar Modificadores"
+
 [node name="ImgLabel" type="Label" parent="TabsNuevoModificar/Editar/DivisorST/Atributos"]
 layout_mode = 2
 text = "Imagen (Usa imágenes cuadradas)"
@@ -150,18 +154,14 @@ file_mode = 0
 access = 2
 use_native_dialog = true
 
-[node name="Relaciones" type="HBoxContainer" parent="TabsNuevoModificar"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
 [node name="Tickets" type="MarginContainer" parent="TabsNuevoModificar"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 2
+metadata/_tab_index = 1
 
 [node name="DivConsTicket" type="VBoxContainer" parent="TabsNuevoModificar/Tickets"]
 layout_mode = 2
