@@ -5,15 +5,15 @@ var dbItemSize : int = 0
 var dbSectionSize : int = 0
 
 #secciones
-var sectionList : Array = []
+var sectionList : Array[Dictionary] = []
 
 #tipos de prodctos
-var productList : Array = []
-var allProductList : Array = []
+var productList : Array[Dictionary] = []
+var allProductList : Array[Dictionary] = []
 
 #lista de mods en un tipo
-var modsList : Array = []
-var allModsList : Array = []
+var modsList : Array[int] = []
+var allModsList : Array[Dictionary] = []
 
 #info de los mods
 var idMod : int
@@ -21,14 +21,14 @@ var nombreMod : String
 var ajustePrecioMod : float
 
 #tickets!!!
-var ticketinfo : Array = []
+var ticketinfo : Array[Dictionary] = []
 
 func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abre para acceder a esos valores 
 	db = SQLite.new()
 	db.path = "res://database.db"
 	db.open_db()
 	db.foreign_keys = false
-	db.verbosity_level = 1 #INFO: aumentar en 2 para aumentar impresiones en consola
+	db.verbosity_level = 2 #INFO: aumentar en 2 para aumentar impresiones en consola
 	print("Se ha abierto una base de datos aquí -> res://database.db")
 	initial_query()
 
@@ -118,13 +118,16 @@ func select_ticket(selectedTicket : int):
 	ticketinfo.clear()
 	var set_condition = "ticket_id=" + str(selectedTicket)
 	select_query("tickets", set_condition , ["fecha", "info", "total_cobrado", "total_recibido", "total_cambio"])
-	ticketinfo.append(db.query_result[0])
+	ticketinfo.append(db.query_result[0]) #BUG: Si se realiza una consulta fuera del rango
 
 func select_query(table : String, conditions : String, columns : Array): #anade el preformato para hacer consultas 
-	db.select_rows(table, conditions, columns)
+	var success = db.select_rows(table, conditions, columns)
+	if !success: #TODO: Añadir excepciones de consulta
+		NotifMessage.send("No se pudo realizar una selección")
+		pass
 
 func insert_query(table : String, dict : Dictionary):
-	db.insert_row(table, dict)
+	db.insert_row(table, dict) #TODO: Añadir excepciones de consulta
 	
 func update_query(table : String, conditions : String, dict : Dictionary):
-	db.update_rows(table,conditions,dict)
+	db.update_rows(table,conditions,dict) #TODO: Añadir excepciones de consulta

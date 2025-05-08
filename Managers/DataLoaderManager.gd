@@ -22,7 +22,7 @@ extends Node
 @onready var cambioeditlabel: Label = $TabsNuevoModificar/Tickets/DivConsTicket/DivDatos/cambioeditlabel
 @onready var ticket_info: TextEdit = $TabsNuevoModificar/Tickets/DivConsTicket/ScrollContainer/ticketInfo
 
-var loaded_image
+var loaded_image #TODO: Saber que tipo asignarle
 var type_selected : int
 var is_new : bool = false
 

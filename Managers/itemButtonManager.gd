@@ -14,7 +14,7 @@ var productNameLabel : RichTextLabel
 var productPriceLabel : RichTextLabel
 var productImgSprite : Sprite2D
 
-var indexName : String
+var indexName : String #el buscador busca lo que sea que esté aqui
 
 func init(productBigNameQuery : String, inputDict : Dictionary) -> void:
 	#los atrubutos se asignan antes de ser creados

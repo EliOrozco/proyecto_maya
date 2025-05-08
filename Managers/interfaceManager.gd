@@ -1,17 +1,17 @@
 extends Node
 
 #precargar recursos
-@onready var itemsButtons = preload("res://Scenes/ItemButton.tscn") #los botones para ser seleccionados, llama al nodo
-@onready var sectionButtons = preload("res://Scenes/SectionButton.tscn")
-@onready var cambioWindow = preload("res://Scenes/cambio.tscn")
-@onready var buscador = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Buscador
-@onready var scrollContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer
-@onready var itemContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
-@onready var itemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
-@onready var ticketSizeLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/DivisorTicketNumber/TicketNumberLab
-@onready var ticketFinalPriceLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorTotalCobrar/CobroTicketText
+@onready var itemsButtons : PackedScene = preload("res://Scenes/ItemButton.tscn") #los botones para ser seleccionados, llama al nodo
+@onready var sectionButtons : PackedScene = preload("res://Scenes/SectionButton.tscn")
+@onready var cambioWindow : PackedScene = preload("res://Scenes/cambio.tscn")
+@onready var buscador : LineEdit = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Buscador
+@onready var scrollContainer : ScrollContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Consultas/TabsNuevoModificar/Editar/DivisorST/Divisor/ScrollContainer
+@onready var itemContainer : GridContainer = $controladorDeInterfaz/Divisor/ColorDeFondoProductos/ContenedorTabs/Ventas/Scroller/Grid
+@onready var itemList : ItemList = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket2/Ticket
+@onready var ticketSizeLabel : RichTextLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorTicket/DivisorTicketNumber/TicketNumberLab
+@onready var ticketFinalPriceLabel : RichTextLabel = $controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/DivisorTotalCobrar/CobroTicketText
 
-var current_ticket : Array = [] #aqui vas a guardar diccionarios de los items
+var current_ticket : Array[Dictionary] = [] #aqui vas a guardar diccionarios de los items
 var calculated_final_price : float = 0.0
 
 # Se ejecuta una sóla vez

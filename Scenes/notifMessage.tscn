@@ -27,7 +27,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="NotifPanel"]
-wait_time = 5.0
+wait_time = 2.5
 one_shot = true
 
 [connection signal="timeout" from="NotifPanel/Timer" to="." method="_on_timer_timeout"]

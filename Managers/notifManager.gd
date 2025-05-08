@@ -4,7 +4,7 @@ extends Node
 @onready var notifText = $NotifPanel/TextoNotif
 @onready var timer = $NotifPanel/Timer
 
-var backlog : Array = []
+var backlog : Array[String] = []
 
 func send(textReceived : String):
 	backlog.append(textReceived)
