@@ -5,18 +5,15 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2ywr"]
 bg_color = Color(1, 1, 0, 1)
 
-[node name="NotifMessage" type="Control"]
-z_index = 1
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 3
-anchors_preset = 0
+[node name="NotifMessage" type="CanvasLayer"]
 script = ExtResource("1_cnduk")
 
 [node name="NotifPanel" type="PanelContainer" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(475, 100)
-layout_mode = 0
 offset_right = 50.0
 offset_bottom = 50.0
+size_flags_horizontal = 8
 
 [node name="TextoNotif" type="RichTextLabel" parent="NotifPanel"]
 layout_mode = 2

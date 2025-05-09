@@ -113,6 +113,7 @@ func _on_eliminar_item_pressed() -> void:
 	else:
 		NotifMessage.send("No hay nada seleccionado")
 
+##DOC
 func _on_nuevo_ticket_button_pressed() -> void:
 	if current_ticket.is_empty():
 		NotifMessage.send("No se puede crear un ticket vacio")

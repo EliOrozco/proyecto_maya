@@ -28,7 +28,7 @@ func _ready() -> void: #crea un objeto para  acceder a la base de datos y la abr
 	db.path = "res://database.db"
 	db.open_db()
 	db.foreign_keys = false
-	db.verbosity_level = 2 #INFO: aumentar en 2 para aumentar impresiones en consola
+	db.verbosity_level = 1 #INFO: aumentar en 2 para aumentar impresiones en consola
 	print("Se ha abierto una base de datos aquí -> res://database.db")
 	initial_query()
 
@@ -103,6 +103,7 @@ func get_last_created_ticket() -> int:
 	db.query("SELECT ticket_id from tickets ORDER by ticket_id DESC LIMIT 1;")
 	return int(db.query_result[0]["ticket_id"])
 
+##Este te limpia la lista
 func clear_section_queries():
 	productList.clear()
 

@@ -13,6 +13,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.952625, 0.406992, 0.235672, 1)
 
 [node name="Interfaz" type="CanvasLayer"]
+layer = 0
 script = ExtResource("1_qvr0x")
 
 [node name="controladorDeInterfaz" type="MarginContainer" parent="."]
@@ -46,6 +47,7 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="Logo" type="Sprite2D" parent="controladorDeInterfaz/Divisor/ColorDeFondoTicket/DivisorTitulo/ContenedorLogo"]
+z_index = -2
 texture = ExtResource("3_wi8ec")
 centered = false
 
