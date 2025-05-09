@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 #precargar recursos
 @onready var itemsButtons : PackedScene = preload("res://Scenes/ItemButton.tscn") #los botones para ser seleccionados, llama al nodo
